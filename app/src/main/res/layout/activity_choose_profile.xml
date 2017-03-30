@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/activity_choose_profile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context="com.example.cucutaae.mobileordering10.ChooseProfileActivity">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_centerVertical="true"
+            android:layout_alignParentStart="true">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="54dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
+                android:text="WELCOME "
+                android:id="@+id/tvWelcome"
+                android:layout_gravity="center_horizontal"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Choose Role: "
+                android:id="@+id/tvChooseRole"
+                android:layout_gravity="center_horizontal"/>
+
+        <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:srcCompat="@mipmap/restaurantpickup"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="14dp"
+                android:id="@+id/ivWaiter"
+                android:background="@color/common_google_signin_btn_text_dark_default"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton" android:elevation="0dp"
+                android:onClick="onClick (ChooseProfileActivity)" android:adjustViewBounds="false"
+        />
+
+        <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:srcCompat="@mipmap/servicebell"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="14dp"
+                android:id="@+id/ivServiceBell"
+                android:background="@color/common_google_signin_btn_text_dark_default"/>
+
+    </LinearLayout>
+</RelativeLayout>

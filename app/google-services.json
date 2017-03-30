@@ -1,0 +1,50 @@
+{
+  "project_info": {
+    "project_number": "406313281435",
+    "firebase_url": "https://mobileorderingpj.firebaseio.com",
+    "project_id": "mobileorderingpj",
+    "storage_bucket": "mobileorderingpj.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406313281435:android:063508f65b3ce221",
+        "android_client_info": {
+          "package_name": "com.example.cucutaae.mobileordering10"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "406313281435-9tt2s6ge2ti2k02h5io1leefbfsj24gi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cucutaae.mobileordering10",
+            "certificate_hash": "71c170cd2ffc3f3173aae400172c73d1d5127da0"
+          }
+        },
+        {
+          "client_id": "406313281435-rm4hfbgv0qnvldo10lrroj4d66skcup3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_nQY7Y4M79AAfKOWub7Bl4a3FnVNfEQg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
