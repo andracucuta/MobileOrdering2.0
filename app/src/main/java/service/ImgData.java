@@ -1,4 +1,4 @@
-package com.example.cucutaae.mobileordering10;
+package service;
 
 /**
  * Created by cucut on 4/1/2017.

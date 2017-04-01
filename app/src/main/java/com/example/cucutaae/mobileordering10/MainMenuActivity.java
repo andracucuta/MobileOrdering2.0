@@ -8,7 +8,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -18,25 +17,26 @@ import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
-public class MainClientActivity extends AppCompatActivity {
+import service.FirebaseStorageService;
+
+public class MainMenuActivity extends AppCompatActivity {
 
     private ImageView ivCoffee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_client);
+        setContentView(R.layout.activity_main_menu);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ivCoffee = (ImageView)findViewById(R.id.ivCoffee);
 
-        getCategoryImagesFromDB();
+        FirebaseStorageService.getImageFromFirebaseStorage(ivCoffee,"gs://mobileorderingpj.appspot.com/MenuCategoriesPictures","coffee.jpg");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

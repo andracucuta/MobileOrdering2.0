@@ -5,10 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
+import com.example.cucutaae.mobileordering10.signin.SignInClientActivity;
+import com.example.cucutaae.mobileordering10.signin.SignInWaiterActivity;
 
 public class ChooseProfileActivity extends AppCompatActivity implements View.OnClickListener {
 

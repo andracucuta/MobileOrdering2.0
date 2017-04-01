@@ -18,10 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpClientActivity" />
-        <activity android:name=".SignInWaiterActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".SignInClientActivity" />
+        <activity android:name=".signin.SignUpClientActivity" />
+        <activity android:name=".signin.SignInWaiterActivity" />
+        <activity android:name=".MainClientActivity" />
+        <activity android:name=".signin.SignInClientActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -35,7 +35,11 @@
             android:name=".ProductListActivity"
             android:label="@string/title_activity_add_product"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AddProductActivity"></activity>
+        <activity android:name=".AddProductActivity" />
+        <activity
+            android:name=".MainMenuActivity"
+            android:label="@string/title_activity_main_client"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
