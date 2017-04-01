@@ -38,7 +38,7 @@ public class SignUpClientActivity extends AppCompatActivity implements View.OnCl
         if(firebaseAuth.getCurrentUser()!=null){
             //profile activity here
             finish();
-            startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+            startActivity(new Intent(getApplicationContext(),MainClientActivity.class));
         }
 
         progressDialog = new ProgressDialog(this);
@@ -100,7 +100,7 @@ public class SignUpClientActivity extends AppCompatActivity implements View.OnCl
                             Toast.makeText(SignUpClientActivity.this,"Registered  Successfuly",Toast.LENGTH_SHORT).show();
 
                             finish();
-                            startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                            startActivity(new Intent(getApplicationContext(),MainClientActivity.class));
                         }
                         else{
                             Toast.makeText(SignUpClientActivity.this,"Could not register. :(  Please try again",Toast.LENGTH_SHORT).show();
