@@ -1,22 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_profile"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.cucutaae.mobileordering10.MainClientActivity">
 
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/laytbtns"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/ivUserPicture"
+                android:layout_width="77dp"
+                android:layout_height="55dp"
+                android:layout_alignParentBottom="true"
+                app:srcCompat="@mipmap/contactsicon" />
+
+            <TextView
+                android:id="@+id/tvHi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/tvUserPicture"
+                android:text="Hi"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+            <TextView
+                android:id="@+id/textViewUserEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/tvHi"
+                android:textColor="#ff0000"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+            <ImageButton
+                android:id="@+id/buttonLogout"
+                style="@android:style/Widget.Holo.Light.ImageButton"
+                android:layout_width="77dp"
+                android:layout_height="55dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textViewUserEmail"
+                android:layout_weight="0.15"
+                android:adjustViewBounds="true"
+                android:background="@drawable/com_facebook_auth_dialog_background"
+                android:onClick="onClick"
+                android:text="Leave"
+                app:srcCompat="@mipmap/logout" />
+
+        </LinearLayout>
+
 
         <ViewFlipper
             android:id="@+id/vfPicutres"
@@ -24,44 +73,34 @@
             android:layout_height="161dp">
 
             <ImageView
-                android:id="@+id/ivImg1"
+                android:id="@+id/ivImg2"
                 android:layout_width="371dp"
                 android:layout_height="match_parent" />
 
             <ImageView
-                android:id="@+id/ivImg2"
-                android:layout_width="match_parent"
+                android:id="@+id/ivImg3"
+                android:layout_width="371dp"
                 android:layout_height="match_parent" />
 
             <ImageView
-                android:id="@+id/ivImg3"
-                android:layout_width="match_parent"
+                android:id="@+id/ivImg1"
+                android:layout_width="371dp"
                 android:layout_height="match_parent" />
 
         </ViewFlipper>
 
-        <TextView
-            android:id="@+id/textViewUserEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/buttonLogout"
-            android:layout_alignStart="@+id/buttonLogout"
-            android:layout_gravity="center_horizontal"
-            android:text="User Registration"
-            android:textAlignment="center"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+        <GridView
+            android:id="@+id/gvMenuBtn"
+            android:layout_width="match_parent"
+            android:layout_height="162dp"
+            android:layout_weight="0.29"
+            android:columnWidth="90dp"
+            android:gravity="center"
+            android:horizontalSpacing="10dp"
+            android:numColumns="3"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="10dp" />
 
-        <Button
-            android:id="@+id/buttonLogout"
-            android:layout_width="199dp"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/linearLayout"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textViewUserEmail"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="33dp"
-            android:layout_weight="0.01"
-            android:text="Logout" />
     </LinearLayout>
 
 </RelativeLayout>
