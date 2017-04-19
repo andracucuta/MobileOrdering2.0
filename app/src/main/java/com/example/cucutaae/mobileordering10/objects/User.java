@@ -1,7 +1,5 @@
 package com.example.cucutaae.mobileordering10.objects;
 
-import android.net.Uri;
-
 import com.google.firebase.database.IgnoreExtraProperties;
 
 /**

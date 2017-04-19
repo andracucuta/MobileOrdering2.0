@@ -1,18 +1,21 @@
 package com.example.cucutaae.mobileordering10.adapter;
 
-import android.util.Log;
-
+import com.example.cucutaae.mobileordering10.CategoryListActivity;
+import com.example.cucutaae.mobileordering10.R;
+import com.example.cucutaae.mobileordering10.objects.ImageUpload;
 import com.example.cucutaae.mobileordering10.objects.User;
-import com.google.firebase.database.ChildEventListener;
+import com.example.cucutaae.mobileordering10.utils.Constants;
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-;
-import java.util.ArrayList;
-import java.util.List;
 
+import java.util.List;
 
 /**
  * Created by cucut on 4/2/2017.
@@ -20,54 +23,48 @@ import java.util.List;
 
 public class UserAdapter {
 
-    private DatabaseReference mDatabase;
 
-    private DatabaseReference userCloudEndPoint;
+    private DatabaseReference mDatabaseRef;
+    private List<User> userList;
 
     private static final String TAG = "UserAdapter";
 
+
     public void writeNewUser(String userId, String name, String email, String profilePictureURI) {
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference();
 
         User user = new User(name, email, profilePictureURI);
 
-        mDatabase.child("Users").child(userId).setValue(user);
+        mDatabaseRef.child("Users").child(userId).setValue(user);
     }
 
-/*    public User readUser(String userId) {
-
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        User user = new User();
-
-        user.setUsername();
-        *//*name, email, profilePictureURI*//*
-        return user;
-    }*/
 
     public User userList(String uid) {
-      /*  mDatabase = FirebaseDatabase.getInstance().getReference();*/
 
-        final User[] user = {new User()};
+        final User userReturned = new User();
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("Users");
-        mDatabase.child(uid).addValueEventListener(new ValueEventListener() {
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference(Constants.FB_DATABASE_USER_PATH);
+
+        mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                user[0] = dataSnapshot.getValue(User.class);
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    //ImageUpload class require default constructor
+                    User user = snapshot.getValue(User.class);
+                    userList.add(user);
+                }
 
-                Log.d(TAG, "User name: " + user[0].getUsername() + ", email " + user[0].getEmail());
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
 
-        return user[0];
+
+        return userReturned;
     }
 }

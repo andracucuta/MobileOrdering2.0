@@ -17,6 +17,7 @@ import com.example.cucutaae.mobileordering10.adapter.UserAdapter;
 import com.example.cucutaae.mobileordering10.objects.User;
 import com.example.cucutaae.mobileordering10.signin.SignInClientActivity;
 import com.example.cucutaae.mobileordering10.signin.SignInWaiterActivity;
+import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -27,10 +28,9 @@ import service.FirebaseStorageService;
 
 public class MainClientActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private FirebaseAuth firebaseAuth;
-
     private ViewFlipper vfPicutres;
 
+    private ImageView ivUserPicture;
     private ImageView ivImg1;
     private ImageView ivImg2;
     private ImageView ivImg3;
@@ -40,15 +40,15 @@ public class MainClientActivity extends AppCompatActivity implements View.OnClic
     private TextView textViewUserEmail;
     private ImageButton buttonLogout;
 
-    private ImageView ivUserPicture;
-
+    private FirebaseAuth firebaseAuth;
     private FirebaseUser mFirebaseUser;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_client);
+
+        Firebase.setAndroidContext(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -71,7 +71,7 @@ public class MainClientActivity extends AppCompatActivity implements View.OnClic
 
                 switch (position){
                     case 0:
-                        Intent intent = new Intent(MainClientActivity.this, AddProductActivity.class);
+                        Intent intent = new Intent(MainClientActivity.this, CategoryListActivity.class);
                         MainClientActivity.this.startActivity(intent);
                         break;
                     default:
@@ -94,14 +94,10 @@ public class MainClientActivity extends AppCompatActivity implements View.OnClic
 
         }else{
 
-            UserAdapter userAdapter = new UserAdapter();
+            textViewUserEmail.setText(" " + mFirebaseUser.getDisplayName());
 
-            User userLogined = userAdapter.userList(mFirebaseUser.getUid());
-
-            String userName = getIntent().getStringExtra("SESSION_USER");
-
-            textViewUserEmail.setText(" " + userName);
-           /* ivUserPicture.setImageURI(uri);*/
+            ivUserPicture.setImageURI(null);
+            ivUserPicture.setImageURI(mFirebaseUser.getPhotoUrl());
 
         }
         buttonLogout = (ImageButton)findViewById(R.id.buttonLogout);
@@ -114,6 +110,9 @@ public class MainClientActivity extends AppCompatActivity implements View.OnClic
         ivUserPicture = (ImageView)findViewById(R.id.ivUserPicture);
 
         vfPicutres = (ViewFlipper)findViewById(R.id.vfPicutres);
+
+        vfPicutres.startFlipping();
+        vfPicutres.setFlipInterval(3000);
 
         ivImg1 = (ImageView)findViewById(R.id.ivImg1);
         ivImg2 = (ImageView)findViewById(R.id.ivImg2);
@@ -133,10 +132,10 @@ public class MainClientActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view){
-        if(view == vfPicutres){
+/*        if(view == vfPicutres){
             vfPicutres.startFlipping();
             vfPicutres.setFlipInterval(3000);
-        }
+        }*/
         if(view == buttonLogout){
             firebaseAuth.signOut();
             finish();

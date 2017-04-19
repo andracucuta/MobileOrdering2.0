@@ -26,12 +26,14 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.facebook.FacebookSdk;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignInClientActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -59,7 +61,10 @@ public class SignInClientActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
+        //Newer version of Firebase
+        if(!FirebaseApp.getApps(this).isEmpty()) {
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        }
 
         setContentView(R.layout.activity_sign_in_client);
 
@@ -178,8 +183,6 @@ public class SignInClientActivity extends AppCompatActivity implements View.OnCl
 
                             typeOfLogin = "facebookLogin";
                             intent.putExtra("TYPE_OF_LOGIN", typeOfLogin);
-
-                            intent.putExtra("SESSION_USER", user.getDisplayName());
 
                             startActivity(intent);
 

@@ -39,7 +39,9 @@
         <activity
             android:name=".MainMenuActivity"
             android:label="@string/title_activity_main_client"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CategoryListActivity" />
+        <activity android:name=".AddCategoryActivity"></activity>
     </application>
 
 </manifest>

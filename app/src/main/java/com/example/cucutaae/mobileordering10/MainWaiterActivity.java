@@ -83,8 +83,8 @@ public class MainWaiterActivity extends AppCompatActivity
 
         if (id == R.id.nav_addProduct) {
             startActivity(new Intent(this,ProductListActivity.class));
-        } else if (id == R.id.nav_gallery) {
-
+        } else if (id == R.id.nav_category) {
+            startActivity(new Intent(this,AddCategoryActivity.class));
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
@@ -99,4 +99,5 @@ public class MainWaiterActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
