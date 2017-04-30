@@ -1,12 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cucutaae.mobileordering10.AddProductActivity">
+    android:orientation="vertical"
+    tools:context="com.example.cucutaae.mobileordering10.menu.AddProductActivity"
+    android:weightSum="1">
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_primary"
+        android:onClick="btnBrowse_Click"
+        android:text="Browse Product's image to upload"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:id="@+id/ivProductImage"
+        android:layout_weight="0.92"
+        android:layout_margin="15dp"
+        android:textColor="@color/accent_color"/>
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/txtProductName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Product Name"
+        android:layout_margin="15dp"
+        android:textColor="@color/accent_color"/>
+
+
+    <ExpandableListView
+        android:id="@+id/lvExp"
+        android:layout_width="match_parent"
+        android:layout_height="87dp"
+        android:layout_margin="15dp"
+        android:hint="Choose Category"
+        android:textColor="@color/accent_color"/>
+
+    <EditText
+        android:id="@+id/txtCategoryName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Category Name"
+        android:layout_margin="15dp"
+        android:textColor="@color/accent_color"/>
+
+    <EditText
+        android:id="@+id/txtProductIngredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingredients"
+        android:layout_margin="15dp"
+        android:textColor="@color/accent_color"/>
+
+    <EditText
+        android:id="@+id/txtProductDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description"
+        android:layout_margin="15dp"
+        android:textColor="@color/accent_color"/>
+
+    <EditText
+        android:id="@+id/txtPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="Price"
+        android:layout_margin="15dp"
+        android:textColor="@color/accent_color"/>
+
+    <EditText
+        android:id="@+id/txtCal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Calories"
+        android:layout_margin="15dp"
+        android:textColor="@color/accent_color"/>
+
+    <EditText
+        android:id="@+id/txtQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Quantity"
+        android:layout_margin="15dp"
+        android:textColor="@color/accent_color"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_primary"
+        android:onClick="btnUpload_Click"
+        android:text="Save product"
+        android:layout_margin="15dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_primary"
+        android:onClick="btnShowProductList_Click"
+        android:text="Show products list"
+        android:layout_margin="15dp"/>
+
+</LinearLayout>
+
+</ScrollView>

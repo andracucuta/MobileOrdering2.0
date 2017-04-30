@@ -1,14 +1,7 @@
 package com.example.cucutaae.mobileordering10.adapter;
 
-import com.example.cucutaae.mobileordering10.CategoryListActivity;
-import com.example.cucutaae.mobileordering10.R;
-import com.example.cucutaae.mobileordering10.objects.ImageUpload;
 import com.example.cucutaae.mobileordering10.objects.User;
 import com.example.cucutaae.mobileordering10.utils.Constants;
-import com.firebase.client.ChildEventListener;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.Query;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,7 +44,7 @@ public class UserAdapter {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    //ImageUpload class require default constructor
+
                     User user = snapshot.getValue(User.class);
                     userList.add(user);
                 }

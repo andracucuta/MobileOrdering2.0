@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChooseProfileActivity">
+        <activity android:name=".signin.ChooseProfileActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,16 +32,17 @@
             android:label="@string/title_activity_main_client"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ProductListActivity"
+            android:name=".menu.ProductListActivity"
             android:label="@string/title_activity_add_product"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AddProductActivity" />
+        <activity android:name=".menu.AddProductActivity" />
+        <activity android:name=".menu.CategoryListWaiterActivity" />
+        <activity android:name=".menu.AddCategoryActivity" />
+        <activity android:name=".menu.CategoryListClientActivity" />
         <activity
-            android:name=".MainMenuActivity"
-            android:label="@string/title_activity_main_client"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CategoryListActivity" />
-        <activity android:name=".AddCategoryActivity"></activity>
+            android:name=".menu.ProductItemViewActivity"
+            android:label="@string/title_activity_product_item_view"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

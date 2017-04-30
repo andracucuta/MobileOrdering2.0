@@ -64,7 +64,7 @@ public class SignUpClientActivity extends AppCompatActivity implements View.OnCl
 
         if(view == tvSignIn){
             //will open login activity here
-            startActivity(new Intent(this,SignInWaiterActivity.class));
+            startActivity(new Intent(this,SignInClientActivity.class));
         }
     }
 

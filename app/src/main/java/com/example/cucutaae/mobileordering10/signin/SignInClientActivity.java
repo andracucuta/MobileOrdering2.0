@@ -74,67 +74,74 @@ public class SignInClientActivity extends AppCompatActivity implements View.OnCl
 
         if(firebaseAuth.getCurrentUser()!=null){
             //profile activity here
+            firebaseAuth.signOut();
             finish();
             startActivity(new Intent(getApplicationContext(),MainClientActivity.class));
-        }
+        }else {
 
-        progressDialog = new ProgressDialog(this);
+            progressDialog = new ProgressDialog(this);
 
-        etEmail = (EditText)findViewById(R.id.editTextEmail);
-        etPassword = (EditText) findViewById(R.id.editTextPassword);
+            etEmail = (EditText) findViewById(R.id.editTextEmail);
+            etPassword = (EditText) findViewById(R.id.editTextPassword);
 
-        bSignin = (Button)findViewById(R.id.buttonSignIn);
+            //TO::DO Delete this at the end
+            etEmail.setText("cucuta.andra@yahoo.com");
+            etPassword.setText("pispis93");
+            //End TO::DO
 
-        tvSignup = (TextView)findViewById(R.id.textViewSignUp);
+            bSignin = (Button) findViewById(R.id.buttonSignIn);
 
-
-        //start facebook
-
-        mCallbackManager = CallbackManager.Factory.create();
-        LoginButton loginButton = (LoginButton) findViewById(R.id.login_facebookButton);
-        loginButton.setReadPermissions("email", "public_profile");
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d(TAG, "facebook:onSuccess:" + loginResult);
-
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d(TAG, "facebook:onCancel");
-                // ...
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.d(TAG, "facebook:onError", error);
-                // ...
-            }
-        });
+            tvSignup = (TextView) findViewById(R.id.textViewSignUp);
 
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getDisplayName());
+            //start facebook
 
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
+            mCallbackManager = CallbackManager.Factory.create();
+            LoginButton loginButton = (LoginButton) findViewById(R.id.login_facebookButton);
+            loginButton.setReadPermissions("email", "public_profile");
+            loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+                @Override
+                public void onSuccess(LoginResult loginResult) {
+                    Log.d(TAG, "facebook:onSuccess:" + loginResult);
+
+                    handleFacebookAccessToken(loginResult.getAccessToken());
                 }
-                // ...
-            }
-        };
 
-        //end facebook
+                @Override
+                public void onCancel() {
+                    Log.d(TAG, "facebook:onCancel");
+                    // ...
+                }
 
-        bSignin.setOnClickListener(this);
-        tvSignup.setOnClickListener(this);
+                @Override
+                public void onError(FacebookException error) {
+                    Log.d(TAG, "facebook:onError", error);
+                    // ...
+                }
+            });
+
+
+            mAuthListener = new FirebaseAuth.AuthStateListener() {
+                @Override
+                public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                    user = firebaseAuth.getCurrentUser();
+                    if (user != null) {
+                        // User is signed in
+                        Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getDisplayName());
+
+                    } else {
+                        // User is signed out
+                        Log.d(TAG, "onAuthStateChanged:signed_out");
+                    }
+                    // ...
+                }
+            };
+
+            //end facebook
+
+            bSignin.setOnClickListener(this);
+            tvSignup.setOnClickListener(this);
+        }
     }
 
     @Override

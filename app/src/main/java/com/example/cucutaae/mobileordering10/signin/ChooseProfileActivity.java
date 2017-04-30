@@ -1,18 +1,20 @@
-package com.example.cucutaae.mobileordering10;
+package com.example.cucutaae.mobileordering10.signin;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
+import com.example.cucutaae.mobileordering10.R;
 import com.example.cucutaae.mobileordering10.signin.SignInClientActivity;
 import com.example.cucutaae.mobileordering10.signin.SignInWaiterActivity;
 
 public class ChooseProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageButton ivWaiter;
-    private ImageButton ivServiceBell;
+    private ImageView ivWaiter;
+    private ImageView ivServiceBell;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +22,8 @@ public class ChooseProfileActivity extends AppCompatActivity implements View.OnC
 
         setContentView(R.layout.activity_choose_profile);
 
-        ivWaiter = (ImageButton)findViewById(R.id.ivWaiter);
-        ivServiceBell = (ImageButton)findViewById(R.id.ivServiceBell);
+        ivWaiter = (ImageView) findViewById(R.id.ivWaiter);
+        ivServiceBell = (ImageView) findViewById(R.id.ivServiceBell);
 
         ivWaiter.setOnClickListener(this);
         ivServiceBell.setOnClickListener(this);

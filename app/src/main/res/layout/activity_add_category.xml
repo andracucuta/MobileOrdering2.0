@@ -5,33 +5,42 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-tools:context="com.example.cucutaae.mobileordering10.AddCategoryActivity">
+tools:context="com.example.cucutaae.mobileordering10.menu.AddCategoryActivity"
+    android:weightSum="1">
 
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Browse image to upload"
-    android:onClick="btnBrowse_Click"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_primary"
+        android:onClick="btnBrowse_Click"
+        android:text="Browse Menu Category image to upload" />
 
 <ImageView
-    android:layout_width="300dp"
+    android:layout_width="match_parent"
     android:layout_height="300dp"
     android:layout_gravity="center"
-    android:id="@+id/imageView"/>
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/txtImageName"
-    android:hint="Image name"/>
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Upload image"
-    android:onClick="btnUpload_Click"/>
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Show list image"
-    android:onClick="btnShowListImage_Click"/>
+    android:id="@+id/imageView"
+    android:layout_weight="0.92" />
+
+    <EditText
+        android:id="@+id/txtImageName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Category name" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_primary"
+        android:onClick="btnUpload_Click"
+        android:text="Save category" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_primary"
+        android:onClick="btnShowListImage_Click"
+        android:text="Show Menu Category's list" />
 
 </LinearLayout>

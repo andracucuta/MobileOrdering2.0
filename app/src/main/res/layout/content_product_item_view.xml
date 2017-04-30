@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.cucutaae.mobileordering10.menu.ProductItemViewActivity"
+    tools:showIn="@layout/activity_product_item_view">
+
+<!--    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:text="dfsdd" />-->
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin">
+
+        <ImageView
+            android:id="@+id/ivPrice"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_width="69dp"
+            android:layout_height="43dp"
+            app:layout_anchor="@+id/include"
+            app:layout_collapseMode="parallax"
+            app:srcCompat="@mipmap/pricetag" />
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="TextView"
+            android:textSize="20dp"
+            android:textColor="@color/accent_color"
+            android:layout_weight="0.05" />
+
+        <ImageView
+            android:id="@+id/ivCal"
+            app:layout_collapseMode="parallax"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_width="69dp"
+            android:layout_height="43dp"
+            app:layout_anchor="@+id/include"
+            app:srcCompat="@mipmap/calories" />
+
+        <TextView
+            android:id="@+id/tvCal"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="TextView"
+            android:textSize="20dp"
+            android:textColor="@color/accent_color"
+            android:layout_weight="0.05" />
+
+    </LinearLayout>
+
+        <TextView
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@id/linearLayout"
+            android:id="@+id/tvIngredients"
+            android:textSize="20dp"
+            android:text="Ingredients: "
+            android:textColor="@color/accent_color"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@id/tvIngredients"
+            android:id="@+id/tvIngredientsText"
+            android:textSize="20dp"
+            android:text="Ingredients: "
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/tvIngredientsText"
+            android:id="@+id/tvDescription"
+            android:textSize="20dp"
+            android:text="Description: "
+            android:textColor="@color/accent_color"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@id/tvDescription"
+            android:id="@+id/tvDescriptionText"
+            android:textSize="20dp"
+            android:text="Description: "
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@id/tvDescriptionText"
+            android:id="@+id/tvReviews"
+            android:textSize="20dp"
+            android:text="See Reviews:"
+            android:textColor="@color/accent_color"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_below="@id/tvReviews"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <ListView
+                android:id="@+id/lvReviewList"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:drawSelectorOnTop="false" />
+
+            <EditText
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_below="@id/lvReviewList"
+                android:id="@+id/tvReviewToAdd"
+                android:textSize="20dp"
+                android:hint="Add Review"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_below="@id/tvDescriptionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/tvDescription"
+                    android:id="@+id/tvRaiting"
+                    android:textSize="20dp"
+                    android:text="Raiting: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Description: "
+                    android:textSize="20dp"
+                    android:layout_weight="0.31" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnAddReview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvReviewToAdd"
+                android:layout_margin="15dp"
+                android:background="@color/accent_color"
+                android:text="Add Review"
+                android:textColor="@color/com_facebook_button_background_color_focused" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

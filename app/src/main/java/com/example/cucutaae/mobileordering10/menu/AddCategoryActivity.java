@@ -1,4 +1,4 @@
-package com.example.cucutaae.mobileordering10;
+package com.example.cucutaae.mobileordering10.menu;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -14,8 +14,8 @@ import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import com.example.cucutaae.mobileordering10.objects.ImageUpload;
+import com.example.cucutaae.mobileordering10.R;
+import com.example.cucutaae.mobileordering10.objects.MenuCategory;
 import com.example.cucutaae.mobileordering10.utils.Constants;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,7 +25,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -99,12 +98,12 @@ public class AddCategoryActivity extends AppCompatActivity {
                     //Dimiss dialog when success
                     dialog.dismiss();
                     //Display success toast msg
-                    Toast.makeText(getApplicationContext(), "Image uploaded", Toast.LENGTH_SHORT).show();
-                    ImageUpload imageUpload = new ImageUpload(txtImageName.getText().toString(), taskSnapshot.getDownloadUrl().toString());
+                    Toast.makeText(getApplicationContext(), "Category saved", Toast.LENGTH_SHORT).show();
+                    MenuCategory menuCategory = new MenuCategory(txtImageName.getText().toString(), taskSnapshot.getDownloadUrl().toString());
 
                     //Save image info in to firebase database
                     String uploadId = mDatabaseRef.push().getKey();
-                    mDatabaseRef.child(uploadId).setValue(imageUpload);
+                    mDatabaseRef.child(uploadId).setValue(menuCategory);
 
                 }
             })
@@ -135,7 +134,7 @@ public class AddCategoryActivity extends AppCompatActivity {
     }
 
     public void btnShowListImage_Click(View v) {
-        Intent i = new Intent(AddCategoryActivity.this, CategoryListActivity.class);
+        Intent i = new Intent(AddCategoryActivity.this, CategoryListWaiterActivity.class);
         startActivity(i);
     }
 }

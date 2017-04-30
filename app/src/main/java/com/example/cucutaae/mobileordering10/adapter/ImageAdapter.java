@@ -1,4 +1,4 @@
-package adapter;
+package com.example.cucutaae.mobileordering10.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -43,7 +43,7 @@ public class ImageAdapter extends BaseAdapter {
             imageView = new ImageView(mContext);
 
             Resources r = Resources.getSystem();
-            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, r.getDisplayMetrics());
+            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 75, r.getDisplayMetrics());
 
             imageView.setLayoutParams(new GridView.LayoutParams((int)px, (int)px));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -58,8 +58,8 @@ public class ImageAdapter extends BaseAdapter {
 
     // references to our images
     private Integer[] mThumbIds = {
-            R.drawable.menu1, R.drawable.menu2,
-            R.drawable.menu3, R.drawable.menu4,
-            R.drawable.menu5, R.drawable.menu6
+            R.drawable.menu, R.drawable.order,
+            R.drawable.reservetable, R.drawable.contactus,
+            R.drawable.location, R.drawable.offerts, R.drawable.aboutus
     };
 }

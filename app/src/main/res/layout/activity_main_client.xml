@@ -25,14 +25,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
-            android:weightSum="1">
+            android:weightSum="1"
+            android:layout_marginBottom="15dp">
 
             <ImageView
                 android:id="@+id/ivUserPicture"
                 android:layout_width="77dp"
                 android:layout_height="55dp"
                 android:layout_alignParentBottom="true"
-                app:srcCompat="@mipmap/contactsicon" />
+                app:srcCompat="@mipmap/user" />
 
             <TextView
                 android:id="@+id/tvHi"
@@ -50,18 +51,12 @@
                 android:textColor="#ff0000"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/buttonLogout"
-                style="@android:style/Widget.Holo.Light.ImageButton"
                 android:layout_width="77dp"
                 android:layout_height="55dp"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/textViewUserEmail"
-                android:layout_weight="0.15"
-                android:adjustViewBounds="true"
-                android:background="@drawable/com_facebook_auth_dialog_background"
+                android:layout_alignParentBottom="true"
                 android:onClick="onClick"
-                android:text="Leave"
                 app:srcCompat="@mipmap/logout" />
 
         </LinearLayout>
@@ -71,6 +66,11 @@
             android:id="@+id/vfPicutres"
             android:layout_width="wrap_content"
             android:layout_height="161dp">
+
+            <ImageView
+                android:id="@+id/ivImg4"
+                android:layout_width="371dp"
+                android:layout_height="match_parent" />
 
             <ImageView
                 android:id="@+id/ivImg2"
@@ -92,8 +92,8 @@
         <GridView
             android:id="@+id/gvMenuBtn"
             android:layout_width="match_parent"
-            android:layout_height="162dp"
-            android:layout_weight="0.29"
+            android:layout_height="275dp"
+            android:layout_margin="5dp"
             android:columnWidth="90dp"
             android:gravity="center"
             android:horizontalSpacing="10dp"

@@ -7,29 +7,25 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.example.cucutaae.mobileordering10.R;
-import com.example.cucutaae.mobileordering10.objects.ImageUpload;
+import com.example.cucutaae.mobileordering10.objects.MenuProduct;
 import com.firebase.client.annotations.NotNull;
-
 import java.util.List;
 
-
 /**
- * Created by cucut on 4/18/2017.
+ * Created by cucut on 4/22/2017.
  */
 
-public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
+public class MenuProductAdapter extends ArrayAdapter<MenuProduct> {
     private Activity context;
     private int resources;
-    private List<ImageUpload> listImage;
+    private List<MenuProduct> listImage;
 
-    public ImageListAdapter(@NotNull Activity context, @LayoutRes int resources, @NotNull List<ImageUpload> objects){
+    public MenuProductAdapter(@NotNull Activity context, @LayoutRes int resources, @NotNull List<MenuProduct> objects){
         super(context,resources,objects);
         this.context = context;
         this.resources =  resources;
@@ -42,11 +38,11 @@ public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
         LayoutInflater inflater = context.getLayoutInflater();
 
         View view  = inflater.inflate(resources,null);
-        TextView tvName = (TextView)view.findViewById(R.id.tvImageName);
-        ImageView img = (ImageView)view.findViewById(R.id.imgView);
+        TextView tvProductName = (TextView)view.findViewById(R.id.tvProductItemName);
+        ImageView ivProductPicture = (ImageView)view.findViewById(R.id.ivProductPicture);
 
-        tvName.setText(listImage.get(position).getName());
-        Glide.with(context).load(listImage.get(position).getUrl()).into(img);
+        tvProductName.setText(listImage.get(position).getName());
+        Glide.with(context).load(listImage.get(position).getImageURL()).into(ivProductPicture);
 
         return view;
     }

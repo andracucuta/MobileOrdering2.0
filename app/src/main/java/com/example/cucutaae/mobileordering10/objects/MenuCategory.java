@@ -4,11 +4,11 @@ package com.example.cucutaae.mobileordering10.objects;
  * Created by cucut on 4/18/2017.
  */
 
-public class ImageUpload {
+public class MenuCategory {
     public String name;
     public String url;
 
-    public ImageUpload(String name, String url) {
+    public MenuCategory(String name, String url) {
         this.name = name;
         this.url = url;
     }
@@ -21,6 +21,13 @@ public class ImageUpload {
         return url;
     }
 
-    public ImageUpload(){}
+    public MenuCategory(){}
 
+    @Override
+    public String toString() {
+        return "MenuCategory{" +
+                "name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

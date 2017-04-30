@@ -4,13 +4,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.widget.ImageView;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -19,6 +19,9 @@ import java.io.IOException;
  */
 
 public class FirebaseStorageService {
+
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("https://mobileorderingpj.firebaseio.com/Categories");
 
     public static void getImageFromFirebaseStorage(final ImageView imageView, String path, String imageName) {
         FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -40,4 +43,5 @@ public class FirebaseStorageService {
             });
         } catch (IOException e ) {}
     }
+
 }

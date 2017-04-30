@@ -9,6 +9,9 @@ public class Constants {
     public static final String FB_STORAGE_CATEGORIES_PATH = "MenuCategoriesPictures/";
     public static final String FB_DATABASE_CATEGORIES_PATH = "Categories";
 
+    public static final String FB_STORAGE_PRODUCTS_PATH = "MenuProductsPictures/";
+    public static final String FB_DATABASE_PRODUCTS_PATH = "Products";
+
     public static final String FB_DATABASE_USER_PATH = "User";
 
     public static final int REQUEST_CODE = 1234;
