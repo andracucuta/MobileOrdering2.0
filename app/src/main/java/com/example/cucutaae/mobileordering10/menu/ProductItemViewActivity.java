@@ -1,8 +1,7 @@
 package com.example.cucutaae.mobileordering10.menu;
 
+import android.app.Dialog;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,12 +11,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.example.cucutaae.mobileordering10.R;
 import com.example.cucutaae.mobileordering10.adapter.ReviewAdapter;
 import com.example.cucutaae.mobileordering10.objects.MenuProduct;
+import com.example.cucutaae.mobileordering10.objects.Order;
+import com.example.cucutaae.mobileordering10.objects.OrderProduct;
 import com.example.cucutaae.mobileordering10.objects.Review;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ProductItemViewActivity extends AppCompatActivity {
+public class ProductItemViewActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
 
     private ImageView ivProductItemImage;
 
@@ -37,10 +42,10 @@ public class ProductItemViewActivity extends AppCompatActivity {
     private TextView tvCal;
     private TextView tvIngredientsText;
     private TextView tvDescriptionText;
-
     private EditText tvReviewToAdd;
     private RatingBar ratingBar;
     private Button btnAddReview;
+    private ImageView ivAddProduct;
 
     private ListView lvReviewList;
 
@@ -48,7 +53,13 @@ public class ProductItemViewActivity extends AppCompatActivity {
     private List<Review> mReviewList;
 
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("Products");
+
+    DatabaseReference refProducts = database.getReference("Products");
+    DatabaseReference refOrders = database.getReference("Order");
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser mFirebaseUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,12 +67,15 @@ public class ProductItemViewActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        mFirebaseUser = firebaseAuth.getCurrentUser();
+
         init();
 
         MenuProduct item = (MenuProduct) getIntent().getSerializableExtra("Product");
 
         setContent(item);
-
 
         Review review1 = new Review("cucuta.andra", "", new Date(), "The best latte in town.", 1.2f);
         Review review2 = new Review("cocos.daniel", "", new Date(), "I hate it...",2.5f);
@@ -99,16 +113,51 @@ public class ProductItemViewActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        ivAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+
+                verifyIfUserHasTable(mFirebaseUser.getEmail().split("@")[0]);
+
             }
         });
     }
 
+    public void selectProductQuantity(final String user, final String orderKey)
+    {
+        final Dialog d = new Dialog(ProductItemViewActivity.this);
+        d.setTitle("NumberPicker");
+        d.setContentView(R.layout.dialog_select_quantity);
+        Button b1 = (Button) d.findViewById(R.id.btnSet);
+        Button b2 = (Button) d.findViewById(R.id.btnCancel);
+        final NumberPicker np = (NumberPicker) d.findViewById(R.id.numberPicker1);
+        np.setMaxValue(20); // max value 100
+        np.setMinValue(1);   // min value 0
+        np.setWrapSelectorWheel(false);
+        np.setOnValueChangedListener(this);
+        b1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+
+                OrderProduct orderProduct = new OrderProduct(Integer.parseInt(String.valueOf(np.getValue())),tvProductItemImage.getText().toString());
+
+                refOrders.child(orderKey).child("OrderProducts").push().setValue(orderProduct);
+
+                Toast.makeText(getApplicationContext(), "Added " + String.valueOf(np.getValue()) + " " + tvProductItemImage.getText(),Toast.LENGTH_LONG).show();
+
+                d.dismiss();
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                d.dismiss(); // dismiss the dialog
+            }
+        });
+        d.show();
+    }
 
     private void setContent(MenuProduct item) {
         tvProductItemImage.setText(item.getName());
@@ -138,12 +187,13 @@ public class ProductItemViewActivity extends AppCompatActivity {
          lvReviewList = (ListView) findViewById(R.id.lvReviewList);
 
          mReviewList = new ArrayList<>();
+
+         ivAddProduct = (ImageView)findViewById(R.id.ivAddProduct);
      }
 
     private void setProductImage( String tvProductName) {
 
-
-        ref.orderByChild("name").equalTo(tvProductName).addChildEventListener(new ChildEventListener() {
+        refProducts.orderByChild("name").equalTo(tvProductName).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
 
@@ -175,6 +225,54 @@ public class ProductItemViewActivity extends AppCompatActivity {
 
             }
 
+        });
+    }
+
+    @Override
+    public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+        Log.i("value is",""+newVal);
+    }
+
+
+    private void verifyIfUserHasTable( String userName) {
+
+        refOrders.orderByChild("user").equalTo(userName.trim()).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+
+                Order order = dataSnapshot.getValue(Order.class);
+
+                if(order.getState()==3){
+
+                   Toast.makeText(getBaseContext(),"You can not place an order yet. " +
+                           "You don't have a table.\n Please go to Enroll Table screen.", Toast.LENGTH_LONG).show();
+
+                }else{
+                    selectProductQuantity(mFirebaseUser.getEmail().split("@")[0],dataSnapshot.getKey());
+                }
+
+                Log.v("ORDER_V", dataSnapshot.getKey() + " " + order.toString());
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
         });
     }
 }

@@ -7,11 +7,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.example.cucutaae.mobileordering10.R;
 import com.example.cucutaae.mobileordering10.objects.Review;
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 /**

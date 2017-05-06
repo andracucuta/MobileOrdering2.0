@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+tools:context="com.example.cucutaae.mobileordering10.location.AddPlaceLocationActivity"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/layoutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <ImageView
+            android:id="@+id/ivPayCash"
+            app:srcCompat="@drawable/mappin"
+            android:layout_width="69dp"
+            android:layout_height="58dp"
+            android:layout_marginBottom="15dp"
+            android:layout_margin="15dp" />
+
+        <TextView
+            android:id="@+id/tvOrderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/btnSubmitOrder"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="20dp"
+            android:text="Place location"
+            android:textColor="@color/accent_color"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+        <EditText
+            android:id="@+id/etLongitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutTitle"
+            android:layout_margin="15dp"
+            android:hint="Latitude "
+            android:textColor="@color/accent_color"
+            android:textSize="25dp"
+            android:ems="10"
+            android:inputType="numberDecimal"/>
+
+        <EditText
+            android:id="@+id/etLatitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etLongitude"
+            android:layout_margin="15dp"
+            android:hint="Latitude "
+            android:textColor="@color/accent_color"
+            android:textSize="25dp"
+            android:ems="10"
+            android:inputType="numberDecimal"/>
+
+    <EditText
+        android:id="@+id/etPlaceName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etLatitude"
+        android:layout_margin="15dp"
+        android:hint="Place Name"
+        android:textColor="@color/accent_color"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/tvRecomandation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etPlaceName"
+        android:layout_margin="15dp"
+        android:text="Please take the exact location from Google Maps."
+        android:textColor="@color/accent_color"
+        android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tvRecomandation"
+            android:layout_margin="15dp"
+            android:layout_marginTop="61dp"
+            android:background="@color/accent_color"
+            android:text="Submit Location "
+            android:textColor="@color/cardview_light_background"
+            android:textSize="25dp" />
+
+</RelativeLayout>
+

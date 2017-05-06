@@ -1,0 +1,145 @@
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+tools:context="com.example.cucutaae.mobileordering10.aboutus.AboutUsActivity"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"  >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/layoutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <ImageView
+            android:id="@+id/ivAboutUs"
+            app:srcCompat="@drawable/aboutus"
+            android:layout_width="69dp"
+            android:layout_height="58dp"
+            android:layout_marginBottom="15dp"
+            android:layout_margin="15dp" />
+
+        <TextView
+            android:id="@+id/tvAboutUs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/btnSubmitOrder"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="20dp"
+            android:text="About Us"
+            android:textColor="@color/accent_color"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtHelcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutTitle"
+        android:textSize="20dp"
+        android:text="Welcome to"
+        android:layout_margin="15dp"
+        android:textColor="@color/accent_color"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/txtHelcome"
+        app:srcCompat="@drawable/defaultimage"
+        android:layout_gravity="center"
+        android:id="@+id/ivPlaceLogo"
+        android:layout_weight="0.92"
+        android:layout_margin="15dp"
+        />
+
+        <TextView
+            android:id="@+id/txtDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivPlaceLogo"
+            android:textSize="20dp"
+            android:text="Short Description"
+            android:layout_margin="15dp"
+            android:textColor="@color/accent_color"/>
+
+        <TextView
+            android:id="@+id/txtplaceDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtDescription"
+            android:textSize="20dp"
+            android:text="Description"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/accent_color"/>
+
+
+        <TextView
+            android:id="@+id/txtTimeOpenText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtplaceDescription"
+            android:text="Open From: "
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:textSize="20dp"
+            android:textColor="@color/accent_color"/>
+
+        <TextView
+            android:id="@+id/txtTimeOpen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtTimeOpenText"
+            android:textSize="20dp"
+            android:text="Open From"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/accent_color"/>
+
+        <TextView
+            android:id="@+id/txtPlacePhoneNumberText"
+            android:layout_below="@+id/txtTimeOpen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:textSize="20dp"
+         />
+
+        <TextView
+            android:id="@+id/txtPlacePhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtPlacePhoneNumberText"
+            android:textSize="20dp"
+            android:text="Phone"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/accent_color"/>
+
+        <TextView
+            android:id="@+id/txtRecomandation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtPlacePhoneNumber"
+            android:textSize="20dp"
+            android:text="Recomandations"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/accent_color"/>
+
+    </RelativeLayout>
+</ScrollView>

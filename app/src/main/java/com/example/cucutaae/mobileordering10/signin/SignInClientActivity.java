@@ -2,7 +2,6 @@ package com.example.cucutaae.mobileordering10.signin;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -15,9 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cucutaae.mobileordering10.MainClientActivity;
-import com.example.cucutaae.mobileordering10.MainWaiterActivity;
 import com.example.cucutaae.mobileordering10.R;
-import com.example.cucutaae.mobileordering10.adapter.UserAdapter;
+import com.example.cucutaae.mobileordering10.dao.UserDao;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -31,7 +29,6 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.facebook.FacebookSdk;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -62,7 +59,7 @@ public class SignInClientActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
 
         //Newer version of Firebase
-        if(!FirebaseApp.getApps(this).isEmpty()) {
+        if (!FirebaseApp.getApps(this).isEmpty()) {
             FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         }
 
@@ -72,12 +69,12 @@ public class SignInClientActivity extends AppCompatActivity implements View.OnCl
 
         mAuth = FirebaseAuth.getInstance();
 
-        if(firebaseAuth.getCurrentUser()!=null){
+        if (firebaseAuth.getCurrentUser() != null) {
             //profile activity here
             firebaseAuth.signOut();
             finish();
-            startActivity(new Intent(getApplicationContext(),MainClientActivity.class));
-        }else {
+            startActivity(new Intent(getApplicationContext(), MainClientActivity.class));
+        } else {
 
             progressDialog = new ProgressDialog(this);
 
@@ -175,16 +172,16 @@ public class SignInClientActivity extends AppCompatActivity implements View.OnCl
                             Log.w(TAG, "signInWithCredential", task.getException());
                             Toast.makeText(SignInClientActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                        }else{
+                        } else {
 
-                            UserAdapter userAdapter = new UserAdapter();
+                            UserDao userDao = new UserDao();
 
                             String userId = user.getUid();
                             String name = user.getDisplayName() == null ? "" : user.getDisplayName();
                             String email = user.getEmail() == null ? "" : user.getEmail();
-                            String profileImage = user.getPhotoUrl().toString() ;
+                            String profileImage = user.getPhotoUrl().toString();
 
-                            userAdapter.writeNewUser(userId, name, email, profileImage);
+                            userDao.writeNewUser(userId, name, email, profileImage);
 
                             Intent intent = new Intent(getBaseContext(), MainClientActivity.class);
 
@@ -210,33 +207,33 @@ public class SignInClientActivity extends AppCompatActivity implements View.OnCl
     }
 
     @Override
-    public void onClick(View view){
-        if(view == bSignin){
+    public void onClick(View view) {
+        if (view == bSignin) {
             userLogin();
         }
 
-        if(view == tvSignup){
+        if (view == tvSignup) {
             finish();
-            startActivity(new Intent(this,SignUpClientActivity.class));
+            startActivity(new Intent(this, SignUpClientActivity.class));
         }
     }
 
 
-    private void userLogin(){
+    private void userLogin() {
 
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
-        if(TextUtils.isEmpty(email)){
+        if (TextUtils.isEmpty(email)) {
 
-            Toast.makeText(this,"Please enter an email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter an email", Toast.LENGTH_SHORT).show();
 
             return;
         }
 
-        if(TextUtils.isEmpty(password)){
+        if (TextUtils.isEmpty(password)) {
 
-            Toast.makeText(this,"Please enter an password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter an password", Toast.LENGTH_SHORT).show();
 
             return;
         }
@@ -250,9 +247,12 @@ public class SignInClientActivity extends AppCompatActivity implements View.OnCl
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
 
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
+
+                            UserDao userDao = new UserDao();
+                            userDao.writeNewUser(firebaseAuth.getCurrentUser().getUid(), firebaseAuth.getCurrentUser().getDisplayName(), firebaseAuth.getCurrentUser().getEmail(), firebaseAuth.getCurrentUser().getProviderId());
+
                             finish();
-                            ///
 
                             Intent intent = new Intent(getBaseContext(), MainClientActivity.class);
 
@@ -261,7 +261,6 @@ public class SignInClientActivity extends AppCompatActivity implements View.OnCl
                             intent.putExtra("TYPE_OF_LOGIN", typeOfLogin);
                             startActivity(intent);
 
-                            /*startActivity(new Intent(getApplicationContext(),MainClientActivity.class));*/
                         }
                     }
                 });

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.cucutaae.mobileordering10.tableReservation.TableReservationActivity"
+    tools:showIn="@layout/activity_table_reservation">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_margin="25dp"
+        android:id="@+id/layout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/twTableRegisterLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You are now enrolled on: "
+            android:textColor="@color/color_primary"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/twTableRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:text="no table."
+            android:textColor="#FC5454"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutAfterTableRegister"
+        android:visibility="invisible"
+        android:layout_below="@id/layout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_margin="25dp"
+            android:id="@+id/layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/twTableRegister1"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to "
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/twTableRegister2"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            app:srcCompat="@drawable/logo2"
+            android:textColor="#FC5454"
+            android:textSize="20dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/twTableRegister3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout"
+            android:layout_margin="20dp"
+            android:text="Now that you have a table, you can have a quality time at our place. "
+            android:textColor="@color/color_primary"
+            android:textSize="20dp" />
+
+        <LinearLayout
+            android:layout_margin="25dp"
+            android:id="@+id/layout3"
+            android:layout_below="@id/twTableRegister3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/twTableRegister4"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See the Menu: "
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:id="@+id/iwGoMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="59dp"
+                app:srcCompat="@drawable/menu"
+                android:textColor="#FC5454"
+                android:textSize="20dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="25dp"
+            android:id="@+id/layout4"
+            android:layout_below="@id/layout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/twTableRegister6"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See the Order: "
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:id="@+id/iwGoOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="59dp"
+                app:srcCompat="@drawable/order"
+                android:textColor="#FC5454"
+                android:textSize="20dp"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

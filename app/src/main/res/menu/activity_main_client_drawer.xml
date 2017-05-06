@@ -11,13 +11,13 @@
             android:icon="@drawable/ic_menu_category"
             android:title="Add Category" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_placeLocation"
+            android:icon="@drawable/ic_menu_addPlaceLocation"
+            android:title="Place Location" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_placeAboutUs"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Place Info" />
     </group>
 
     <item android:title="Communicate">

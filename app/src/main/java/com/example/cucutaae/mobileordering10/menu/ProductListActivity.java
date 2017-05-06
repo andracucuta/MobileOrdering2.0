@@ -29,12 +29,11 @@ import java.util.List;
 
 public class ProductListActivity extends AppCompatActivity {
 
-    TextView tvCategoryName;
-    ImageView ivProductPicture;
-    ListView lviProductsImageList;
-    ImageView ivbtnBack;
-    TextView tvCategName;
-    TextView tvProductItemName;
+    private TextView tvCategoryName;
+    private ImageView ivProductPicture;
+    private ListView lviProductsImageList;
+    private ImageView ivbtnBack;
+    private TextView tvCategName;
 
     private DatabaseReference mDatabaseRef;
     private List<MenuProduct> productList;
@@ -132,13 +131,9 @@ public class ProductListActivity extends AppCompatActivity {
         tvCategoryName = (TextView) findViewById(R.id.tvCategoryName);
 
         lviProductsImageList = (ListView) findViewById(R.id.lviProductsImageList);
-
-       // tvProductItemName = (TextView) findViewById(R.id.tvProductItemName);
-
     }
 
     private void setCategoryImage( String tvCategoryName) {
-
 
         ref.orderByChild("name").equalTo(tvCategoryName).addChildEventListener(new ChildEventListener() {
             @Override

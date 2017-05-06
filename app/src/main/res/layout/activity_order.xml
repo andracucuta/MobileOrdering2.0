@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.cucutaae.mobileordering10.order.OrderActivity"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="413dp">
+
+        <TextView
+            android:id="@+id/tvOrderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Order: "
+            android:textColor="@color/accent_color"
+            android:textSize="25dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/btnSubmitOrder" />
+
+        <ListView
+            android:id="@+id/lvProductList"
+            android:layout_below="@+id/tvOrderText"
+            android:layout_width="wrap_content"
+            android:layout_height="290dp"
+            android:layout_alignParentStart="true" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutTotal"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:layout_below="@+id/lvProductList"
+            android:layout_alignEnd="@+id/btnSubmitOrder"
+            android:layout_marginEnd="25dp">
+
+            <TextView
+            android:id="@+id/tvOrderTotalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total: "
+            android:textColor="@color/accent_color"
+            android:textSize="25dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentTop="true" />
+
+            <TextView
+                android:id="@+id/tvOrderTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="28dp"
+                android:text="0 $ "
+                android:textColor="@color/colorAccent"
+                android:textSize="25dp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSubmitOrder"
+            android:layout_below="@+id/layoutTotal"
+            android:layout_margin="15dp"
+            android:layout_width="368dp"
+            android:layout_height="wrap_content"
+            android:background="@color/accent_color"
+            android:text="Submit Order"
+            android:textColor="@color/cardview_light_background"
+            android:layout_marginBottom="28dp" />
+
+</RelativeLayout>
+</ScrollView>

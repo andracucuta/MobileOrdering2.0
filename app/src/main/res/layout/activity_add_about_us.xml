@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.cucutaae.mobileordering10.aboutus.AddAboutUsActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <Button
+            android:id="@+id/btnUpload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/color_primary"
+            android:onClick="btnBrowse_Click"
+            android:text="Browse Place Logo"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@color/cardview_light_background" />
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:srcCompat="@drawable/defaultimage"
+            android:layout_gravity="center"
+            android:id="@+id/ivPlaceLogo"
+            android:layout_weight="0.92"
+            android:layout_margin="15dp"
+        />
+
+        <EditText
+            android:id="@+id/txtPlaceName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Place Name"
+            android:layout_margin="15dp"
+            android:textColor="@color/accent_color"/>
+
+
+        <EditText
+            android:id="@+id/txtplaceDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Place Description"
+            android:layout_margin="15dp"
+            android:textColor="@color/accent_color"/>
+
+        <EditText
+            android:id="@+id/txtPlacePhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:ems="10"
+            android:inputType="phone"
+            android:layout_margin="15dp"
+            android:textColor="@color/accent_color"/>
+
+        <EditText
+            android:id="@+id/txtTimeOpen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Open From: "
+            android:layout_margin="15dp"
+            android:textColor="@color/accent_color"/>
+
+        <EditText
+            android:id="@+id/txtWifiName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Wifi Name"
+            android:layout_margin="15dp"
+            android:textColor="@color/accent_color"/>
+
+        <EditText
+            android:id="@+id/txtWifiPasswork"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Wifi Password"
+            android:layout_margin="15dp"
+            android:textColor="@color/accent_color"/>
+
+        <EditText
+            android:id="@+id/txtRecomandation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Recomandations"
+            android:layout_margin="15dp"
+            android:textColor="@color/accent_color"/>
+
+        <Button
+            android:id="@+id/btnSave"
+            android:textColor="@color/cardview_light_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@color/color_primary"
+            android:onClick="btnSave_Click"
+            android:text="Save" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.cucutaae.mobileordering10.aboutus.AddAboutUsActivity;
+import com.example.cucutaae.mobileordering10.location.AddPlaceLocationActivity;
 import com.example.cucutaae.mobileordering10.menu.AddCategoryActivity;
 import com.example.cucutaae.mobileordering10.menu.ProductListActivity;
 
@@ -88,10 +90,10 @@ public class MainWaiterActivity extends AppCompatActivity
             startActivity(new Intent(this,ProductListActivity.class));
         } else if (id == R.id.nav_category) {
             startActivity(new Intent(this,AddCategoryActivity.class));
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        } else if (id == R.id.nav_placeLocation) {
+            startActivity(new Intent(this,AddPlaceLocationActivity.class));
+        } else if (id == R.id.nav_placeAboutUs) {
+            startActivity(new Intent(this,AddAboutUsActivity.class));
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

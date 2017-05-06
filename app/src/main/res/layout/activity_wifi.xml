@@ -1,0 +1,99 @@
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.cucutaae.mobileordering10.wifi.WifiActivity">
+
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/layoutTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp">
+
+            <ImageView
+                android:id="@+id/ivWifi"
+                app:srcCompat="@drawable/wifi"
+                android:layout_width="69dp"
+                android:layout_height="58dp"
+                android:layout_marginBottom="15dp"
+                android:layout_margin="15dp" />
+
+            <TextView
+                android:id="@+id/tvWifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/btnSubmitOrder"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="20dp"
+                android:text="Enjoy Wifi for Free"
+                android:textColor="@color/accent_color"
+                android:textSize="25dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtWifiRecomandation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutTitle"
+            android:textSize="20dp"
+            android:text="There's no need for you to use your phone data. You can connect to our network. "
+            android:layout_margin="15dp"
+            android:textColor="@color/accent_color"/>
+
+        <TextView
+            android:id="@+id/txtWifiNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtWifiRecomandation"
+            android:textSize="25dp"
+            android:text="Wifi Name"
+            android:layout_margin="15dp"
+            android:textColor="@color/accent_color"/>
+
+        <TextView
+            android:id="@+id/txtWifiName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtWifiNameText"
+            android:textSize="20dp"
+            android:text="Name"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/accent_color"/>
+
+
+        <TextView
+            android:id="@+id/txtWifiPassworkText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtWifiName"
+            android:text="Wifi Password "
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:textSize="25dp"
+            android:textColor="@color/accent_color"/>
+
+        <TextView
+            android:id="@+id/txtWifiPasswork"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtWifiPassworkText"
+            android:textSize="20dp"
+            android:text="Password"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/accent_color"/>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
