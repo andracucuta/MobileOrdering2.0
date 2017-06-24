@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
@@ -6,24 +5,25 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
 tools:context="com.example.cucutaae.mobileordering10.menu.AddCategoryActivity"
-    android:weightSum="1">
+android:weightSum="1">
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_margin="15dp"
         android:background="@color/color_primary"
         android:onClick="btnBrowse_Click"
         android:text="Browse Menu Category image to upload" />
 
 <ImageView
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    app:srcCompat="@drawable/defaultimage"
+    android:layout_height="206dp"
     android:layout_gravity="center"
-    android:id="@+id/imageView"
-    android:layout_weight="0.92" />
+    android:id="@+id/imageView" />
 
     <EditText
+        android:layout_margin="15dp"
         android:id="@+id/txtImageName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,6 +31,7 @@ tools:context="com.example.cucutaae.mobileordering10.menu.AddCategoryActivity"
 
     <Button
         android:layout_width="match_parent"
+        android:layout_margin="15dp"
         android:layout_height="wrap_content"
         android:background="@color/color_primary"
         android:onClick="btnUpload_Click"
@@ -38,6 +39,7 @@ tools:context="com.example.cucutaae.mobileordering10.menu.AddCategoryActivity"
 
     <Button
         android:layout_width="match_parent"
+        android:layout_margin="15dp"
         android:layout_height="wrap_content"
         android:background="@color/color_primary"
         android:onClick="btnShowListImage_Click"

@@ -2,6 +2,7 @@ package com.example.cucutaae.mobileordering10.menu;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,11 +17,9 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.cucutaae.mobileordering10.R;
-import com.example.cucutaae.mobileordering10.adapter.ReviewAdapter;
-import com.example.cucutaae.mobileordering10.objects.MenuProduct;
-import com.example.cucutaae.mobileordering10.objects.Order;
-import com.example.cucutaae.mobileordering10.objects.OrderProduct;
-import com.example.cucutaae.mobileordering10.objects.Review;
+import com.example.cucutaae.mobileordering10.order.Order;
+import com.example.cucutaae.mobileordering10.order.OrderProduct;
+import com.facebook.Profile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -28,25 +27,31 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class ProductItemViewActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
 
     private ImageView ivProductItemImage;
-
     private TextView tvProductItemImage;
     private TextView tvPrice;
     private TextView tvCal;
     private TextView tvIngredientsText;
     private TextView tvDescriptionText;
+    private TextView tvOrderTableName;
     private EditText tvReviewToAdd;
     private RatingBar ratingBar;
     private Button btnAddReview;
-    private ImageView ivAddProduct;
-
+    private FloatingActionButton ivAddProduct;
+    private TextView tvReviewListEmpty;
     private ListView lvReviewList;
 
     private ReviewAdapter adapter;
@@ -54,8 +59,9 @@ public class ProductItemViewActivity extends AppCompatActivity implements Number
 
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
+    DatabaseReference refReviews = database.getReference("Reviews");
     DatabaseReference refProducts = database.getReference("Products");
-    DatabaseReference refOrders = database.getReference("Order");
+    DatabaseReference refOrders = database.getReference("Orders");
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser mFirebaseUser;
@@ -68,28 +74,57 @@ public class ProductItemViewActivity extends AppCompatActivity implements Number
         setSupportActionBar(toolbar);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
         mFirebaseUser = firebaseAuth.getCurrentUser();
 
-        init();
+        initComponents();
 
-        MenuProduct item = (MenuProduct) getIntent().getSerializableExtra("Product");
+        final MenuProduct item = (MenuProduct) getIntent().getSerializableExtra("Product");
 
         setContent(item);
 
-        Review review1 = new Review("cucuta.andra", "", new Date(), "The best latte in town.", 1.2f);
-        Review review2 = new Review("cocos.daniel", "", new Date(), "I hate it...",2.5f);
-        Review review3 = new Review("cucuta.andra", "", new Date(), "The best latte in town.", 3.0f);
-        Review review4 = new Review("cocos.daniel", "", new Date(), "I hate it...",4.9f);
+        if(mFirebaseUser.getEmail() == null){
+            Profile profile = Profile.getCurrentProfile();
 
-        mReviewList.add(review1);
-        mReviewList.add(review2);
-        mReviewList.add(review3);
-        mReviewList.add(review4);
+            setUserTable(profile.getFirstName() + " " + profile.getLastName());
 
-        adapter = new ReviewAdapter(getApplicationContext(), mReviewList);
+        }else {
+            setUserTable(mFirebaseUser.getEmail().split("@")[0]);
 
-        lvReviewList.setAdapter(adapter);
+        }
+
+        refReviews.child(item.getName()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                mReviewList = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    Review review = snapshot.getValue(Review.class);
+                    mReviewList.add(review);
+
+                    Log.v("PRODUCT_REVIEW", review.toString());
+
+                }
+
+                adapter = new ReviewAdapter(getApplicationContext(), mReviewList);
+
+                lvReviewList.setAdapter(adapter);
+
+                if (!mReviewList.isEmpty()) {
+
+                    tvReviewListEmpty.setVisibility(View.GONE);
+
+                }else{
+                    lvReviewList.setVisibility(View.GONE);
+                    tvReviewListEmpty.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         lvReviewList.setOnTouchListener(new View.OnTouchListener() {
             // Setting on Touch Listener for handling the touch inside ScrollView
@@ -105,19 +140,56 @@ public class ProductItemViewActivity extends AppCompatActivity implements Number
             @Override
             public void onClick(View view) {
 
-                Review reviewNew = new Review("cucuta.andra" , "" , new Date() , tvReviewToAdd.getText().toString(), ratingBar.getRating());
+                DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+                Date today = Calendar.getInstance().getTime();
+                String reviewDate = df.format(today);
+
+                Review reviewNew;
+
+                if(mFirebaseUser.getEmail() == null){
+                    Profile profile = Profile.getCurrentProfile();
+
+                    Log.v("FACEBOOK_USER: ", "Logged, user name=" + profile.getFirstName() + " " + profile.getLastName());
+
+                    reviewNew = new Review(profile.getFirstName() + " " + profile.getLastName(), reviewDate,
+                            tvReviewToAdd.getText().toString(), ratingBar.getRating());
+                }else {
+                    reviewNew = new Review(mFirebaseUser.getEmail().split("@")[0], reviewDate,
+                            tvReviewToAdd.getText().toString(), ratingBar.getRating());
+                }
+
+                lvReviewList.setVisibility(View.VISIBLE);
+                tvReviewListEmpty.setVisibility(View.GONE);
 
                 mReviewList.add(reviewNew);
 
                 adapter.notifyDataSetChanged();
+
+                refReviews.child(item.getName()).push().setValue(reviewNew);
+
+                Toast.makeText(getApplicationContext(), "Review added ",Toast.LENGTH_LONG).show();
+
+                tvReviewToAdd.setText("");
+                ratingBar.setRating(0.0f);
+
             }
         });
+
+
 
         ivAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                verifyIfUserHasTable(mFirebaseUser.getEmail().split("@")[0]);
+                if(mFirebaseUser.getEmail() == null){
+                    Profile profile = Profile.getCurrentProfile();
+
+                    Log.v("FACEBOOK_USER: ", "Logged, user name=" + profile.getFirstName() + " " + profile.getLastName());
+
+                    verifyIfUserHasTable(profile.getFirstName() + " " +  profile.getLastName());
+                }else {
+                    verifyIfUserHasTable(mFirebaseUser.getEmail().split("@")[0]);
+                }
 
             }
         });
@@ -140,7 +212,25 @@ public class ProductItemViewActivity extends AppCompatActivity implements Number
             @Override
             public void onClick(View v) {
 
-                OrderProduct orderProduct = new OrderProduct(Integer.parseInt(String.valueOf(np.getValue())),tvProductItemImage.getText().toString());
+                firebaseAuth = FirebaseAuth.getInstance();
+                mFirebaseUser = firebaseAuth.getCurrentUser();
+
+                OrderProduct orderProduct;
+
+                if(mFirebaseUser.getEmail() == null){
+                    Profile profile = Profile.getCurrentProfile();
+
+                    Log.v("FACEBOOK_USER: ", "Logged, user name=" + profile.getFirstName() + " " + profile.getLastName());
+
+                    verifyIfUserHasTable(profile.getFirstName() + " " +  profile.getLastName());
+                    orderProduct = new OrderProduct(Integer.parseInt(String.valueOf(np.getValue()))
+                            ,tvProductItemImage.getText().toString(), tvPrice.getText().toString(),
+                            profile.getFirstName() + " " +  profile.getLastName(), tvOrderTableName.getText().toString());
+                }else {
+                    orderProduct = new OrderProduct(Integer.parseInt(String.valueOf(np.getValue()))
+                            ,tvProductItemImage.getText().toString(), tvPrice.getText().toString(),
+                            mFirebaseUser.getEmail().split("@")[0], tvOrderTableName.getText().toString());
+                }
 
                 refOrders.child(orderKey).child("OrderProducts").push().setValue(orderProduct);
 
@@ -169,9 +259,11 @@ public class ProductItemViewActivity extends AppCompatActivity implements Number
         tvCal.setText(Integer.toString(item.getCal()));
         tvIngredientsText.setText(item.getIngredients());
 
+       // setReviewList(item.getName());
+
     }
 
-     private void init() {
+     private void initComponents() {
          ivProductItemImage = (ImageView) findViewById(R.id.ivProductItemImage);
          tvProductItemImage = (TextView) findViewById(R.id.tvProductItemImage);
 
@@ -180,6 +272,7 @@ public class ProductItemViewActivity extends AppCompatActivity implements Number
 
          tvIngredientsText = (TextView) findViewById(R.id.tvIngredientsText);
          tvDescriptionText = (TextView) findViewById(R.id.tvDescriptionText);
+         tvOrderTableName = (TextView) findViewById(R.id.tvOrderTableName);
 
          ratingBar = (RatingBar) findViewById(R.id.ratingBar);
          tvReviewToAdd = (EditText) findViewById(R.id.tvReviewToAdd);
@@ -188,7 +281,34 @@ public class ProductItemViewActivity extends AppCompatActivity implements Number
 
          mReviewList = new ArrayList<>();
 
-         ivAddProduct = (ImageView)findViewById(R.id.ivAddProduct);
+         ivAddProduct = (FloatingActionButton) findViewById(R.id.ivAddProduct);
+
+         tvReviewListEmpty = (TextView) findViewById(R.id.tvReviewListEmpty);
+
+     }
+
+     private void setReviewList(final String tvProductName){
+
+         refReviews.child(tvProductName).addValueEventListener(new ValueEventListener() {
+             @Override
+             public void onDataChange(DataSnapshot dataSnapshot) {
+
+                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                     Review review = snapshot.getValue(Review.class);
+                         mReviewList.add(review);
+
+                         Log.v("PRODUCT_REVIEW", snapshot.getKey()+"+");
+                         Log.v("PRODUCT_REVIEW", tvProductName+"+");
+                         Log.v("PRODUCT_REVIEW", review.toString());
+                 }
+             }
+
+             @Override
+             public void onCancelled(DatabaseError databaseError) {
+
+             }
+         });
      }
 
     private void setProductImage( String tvProductName) {
@@ -234,24 +354,113 @@ public class ProductItemViewActivity extends AppCompatActivity implements Number
     }
 
 
-    private void verifyIfUserHasTable( String userName) {
+    private void verifyIfUserHasTable(final String userNameLogIn) {
 
-        refOrders.orderByChild("user").equalTo(userName.trim()).addChildEventListener(new ChildEventListener() {
+        refOrders.orderByChild("state").equalTo(0).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
 
+                boolean userHasTable = false;
+
                 Order order = dataSnapshot.getValue(Order.class);
 
-                if(order.getState()==3){
+                Log.v("ORDER_AVAILABLE", order.toString());
 
-                   Toast.makeText(getBaseContext(),"You can not place an order yet. " +
-                           "You don't have a table.\n Please go to Enroll Table screen.", Toast.LENGTH_LONG).show();
+                Map<Object, Map<String, Object>> map = (Map<Object, Map<String, Object>>) dataSnapshot.getValue();
 
-                }else{
-                    selectProductQuantity(mFirebaseUser.getEmail().split("@")[0],dataSnapshot.getKey());
+                for (Map.Entry<Object, Map<String, Object>> entry : map.entrySet()) {
+
+                    Log.v("DATA_V_MAP", entry.getKey().toString() + "/" + entry.getValue());
+
+                    if (entry.getKey().toString().equalsIgnoreCase("userName")) {
+
+                        Log.v("USERNAEMLOGIN", userNameLogIn);
+
+                        if (entry.toString().split("=")[1].equals(userNameLogIn)) {
+
+                            userHasTable = true;
+
+                        }
+                    }
                 }
 
-                Log.v("ORDER_V", dataSnapshot.getKey() + " " + order.toString());
+                if (userHasTable == true) {
+
+                    firebaseAuth = FirebaseAuth.getInstance();
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    if (user.getEmail() == null) {
+
+                        Profile profile = Profile.getCurrentProfile();
+
+                        Log.v("FACEBOOK_USER: ", "Logged, user name=" + profile.getFirstName() + " " + profile.getLastName());
+
+                        selectProductQuantity(profile.getFirstName() + " " + profile.getLastName(), dataSnapshot.getKey());
+                    } else {
+                        selectProductQuantity(mFirebaseUser.getEmail().split("@")[0], dataSnapshot.getKey());
+                    }
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void setUserTable(final String userNameLogIn) {
+
+        refOrders.orderByChild("state").equalTo(0).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+
+                Query query = refOrders.orderByChild("userName").equalTo(userNameLogIn).limitToFirst(1);
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshotOrderProd) {
+
+                        String userTable = "noTable";
+
+                        if (dataSnapshotOrderProd.getValue() != null) {
+
+                            String [] orderElem = dataSnapshotOrderProd.getValue().toString().replace("{", "").split(",");
+
+                            for(String s : orderElem){
+                                String [] elem = s.split("=");
+
+                                if("table".equalsIgnoreCase(elem[0].trim())){
+                                    userTable = elem[1];
+                                    break;
+                                }
+                            }
+
+                            Log.v("USER_TABLE", userTable);
+
+                            tvOrderTableName.setText(userTable);
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
             }
 
             @Override

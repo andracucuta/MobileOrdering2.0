@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_choose_profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.cucutaae.mobileordering10.signin.ChooseProfileActivity"
+    android:background="@drawable/backgroundimag2">
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        app:srcCompat="@drawable/logo3"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:scaleType="fitXY"
+        android:layout_marginTop="250dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@color/accent_color"
+            android:orientation="vertical"
+            android:layout_margin="15dp"
+            android:layout_below="@+id/ivLogo"
+            android:layout_alignStart="@+id/ivLogo">
+
+            <TextView
+                android:id="@+id/tvWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="54dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="30dp"
+                android:layout_marginTop="15dp"
+                android:text="WELCOME"
+                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
+                android:textColor="@color/cardview_light_background" />
+
+            <TextView
+                android:id="@+id/tvChooseRole"
+                android:textSize="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Choose Role: "
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/cardview_light_background" />
+
+            <ImageView
+                android:id="@+id/ivWaiter"
+                android:layout_marginTop="15dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@color/accent_color"
+                app:srcCompat="@mipmap/restaurantpickup" />
+
+            <ImageView
+                android:id="@+id/ivServiceBell"
+                android:layout_marginTop="15dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@color/accent_color"
+                app:srcCompat="@mipmap/servicebell" />
+
+        </LinearLayout>
+
+</RelativeLayout>

@@ -64,10 +64,10 @@ android:orientation="vertical"  >
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ivPlaceLogo"
-            android:textSize="20dp"
-            android:text="Short Description"
             android:layout_margin="15dp"
-            android:textColor="@color/accent_color"/>
+            android:text="Short Description"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/txtplaceDescription"
@@ -86,12 +86,12 @@ android:orientation="vertical"  >
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtplaceDescription"
-            android:text="Open From: "
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
-            android:textSize="20dp"
-            android:textColor="@color/accent_color"/>
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            android:text="Open From: "
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/txtTimeOpen"
@@ -110,6 +110,7 @@ android:orientation="vertical"  >
             android:layout_below="@+id/txtTimeOpen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
             android:text="Phone"
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp"
@@ -134,12 +135,12 @@ android:orientation="vertical"  >
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtPlacePhoneNumber"
-            android:textSize="20dp"
-            android:text="Recomandations"
-            android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:textColor="@color/accent_color"/>
+            android:layout_marginTop="15dp"
+            android:text="Recomandations"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp" />
 
     </RelativeLayout>
 </ScrollView>

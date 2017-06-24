@@ -9,28 +9,27 @@
         android:id="@+id/laytbtns"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:background="@color/accent_color"
-        android:weightSum="1">
+        android:background="@color/accent_color">
 
         <ImageView
             android:id="@+id/ivbtnBack"
             android:layout_width="40dp"
             android:layout_height="37dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="15dp"
-            app:srcCompat="?attr/actionModeCloseDrawable" />
+            android:layout_marginLeft="5dp"
+            app:srcCompat="@mipmap/backbutton" />
 
         <TextView
             android:id="@+id/tvCategName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
+            android:layout_width="291dp"
+            android:layout_height="37dp"
+            android:layout_gravity="left"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:layout_toStartOf="@+id/tvUserPicture"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="@color/cardview_light_background" />
+            android:text="Text"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="30dp" />
 
     </LinearLayout>
 
@@ -40,7 +39,7 @@
         android:id="@+id/ivProductPicture"
         android:layout_width="match_parent"
         android:gravity="center"
-        android:layout_height="150dp" />
+        android:layout_height="193dp" />
 
     <ListView
     android:layout_width="match_parent"

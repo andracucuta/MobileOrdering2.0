@@ -2,7 +2,6 @@ package com.example.cucutaae.mobileordering10.menu;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,8 +10,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.cucutaae.mobileordering10.R;
-import com.example.cucutaae.mobileordering10.adapter.MenuCategoryAdapter;
-import com.example.cucutaae.mobileordering10.objects.MenuCategory;
 import com.example.cucutaae.mobileordering10.utils.Constants;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

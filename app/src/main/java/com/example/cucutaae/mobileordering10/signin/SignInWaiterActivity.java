@@ -13,10 +13,12 @@ import android.widget.Toast;
 
 import com.example.cucutaae.mobileordering10.MainWaiterActivity;
 import com.example.cucutaae.mobileordering10.R;
+import com.facebook.Profile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignInWaiterActivity extends AppCompatActivity implements View.OnClickListener  {
 
@@ -35,16 +37,19 @@ public class SignInWaiterActivity extends AppCompatActivity implements View.OnCl
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if(firebaseAuth.getCurrentUser()!=null){
-            //profile activity here
-            finish();
-            startActivity(new Intent(getApplicationContext(),MainWaiterActivity.class));
-        }
+//        if(firebaseAuth.getCurrentUser()!=null){
+//            //profile activity here
+//            finish();
+//            startActivity(new Intent(getApplicationContext(),MainWaiterActivity.class));
+//        }
 
         progressDialog = new ProgressDialog(this);
 
         editTextEmail = (EditText)findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+
+        editTextEmail.setText("waiter1@gmail.com");
+        editTextPassword.setText("123456");
 
         buttonSignin = (Button)findViewById(R.id.buttonSignIn);
 

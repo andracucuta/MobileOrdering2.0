@@ -17,5 +17,8 @@ public class Constants {
     public static final String FB_STORAGE_ABOUT_US_PATH = "AboutUs/";
     public static final String FB_DATABASE_ABOUT_US_PATH = "AboutUs";
 
+    public static final String FB_STORAGE_TABLE_PATH = "TablePictures/";
+    public static final String FB_DATABASE_TABLE_PATH = "Table";
+
     public static final int REQUEST_CODE = 1234;
 }

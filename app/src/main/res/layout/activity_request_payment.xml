@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.cucutaae.mobileordering10.RequestPaymentActivity">
+
+    <LinearLayout
+        android:id="@+id/layoutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivWifi"
+            app:srcCompat="@drawable/payment"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="15dp"
+            android:layout_margin="15dp" />
+
+        <TextView
+            android:id="@+id/tvOrderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment: "
+            android:textColor="@color/accent_color"
+            android:textSize="25dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/btnSubmitOrder"/>
+
+        <TextView
+            android:id="@+id/tvOrderTableName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="no table yet"
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/btnSubmitOrder"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvPay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="When you are ready to leave, choose your pay: "
+        android:textColor="@color/colorPrimary"
+        android:textSize="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_above="@+id/layoutPay"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutPay"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true">
+
+        <ImageButton
+            android:id="@+id/ibCash"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/money"
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:scaleType="fitXY"
+            android:layout_alignParentTop="true"
+            android:text="Total for you: "
+            android:textColor="@color/accent_color"
+            android:textSize="20dp" />
+
+        <ImageButton
+            android:id="@+id/ibCard"
+            android:scaleType="fitXY"
+            android:layout_margin="10dp"
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:background="@android:color/transparent"
+            android:text="0 $ "
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp"
+            app:srcCompat="@drawable/creditcard" />
+
+    </LinearLayout>
+
+</RelativeLayout>

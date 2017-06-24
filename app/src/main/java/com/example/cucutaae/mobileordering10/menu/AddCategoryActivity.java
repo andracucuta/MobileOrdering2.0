@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.example.cucutaae.mobileordering10.R;
-import com.example.cucutaae.mobileordering10.objects.MenuCategory;
 import com.example.cucutaae.mobileordering10.utils.Constants;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -47,7 +46,6 @@ public class AddCategoryActivity extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.imageView);
         txtImageName = (EditText) findViewById(R.id.txtImageName);
     }
-
 
     public void btnBrowse_Click(View v) {
         Intent intent = new Intent();
@@ -83,7 +81,7 @@ public class AddCategoryActivity extends AppCompatActivity {
     public void btnUpload_Click(View v) {
         if (imgUri != null) {
             final ProgressDialog dialog = new ProgressDialog(this);
-            dialog.setTitle("Uploading image");
+            dialog.setTitle("Uploading category");
             dialog.show();
 
             //Get the storage reference

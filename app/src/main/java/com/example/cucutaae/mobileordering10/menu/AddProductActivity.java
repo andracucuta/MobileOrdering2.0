@@ -18,8 +18,6 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.example.cucutaae.mobileordering10.R;
-import com.example.cucutaae.mobileordering10.objects.MenuCategory;
-import com.example.cucutaae.mobileordering10.objects.MenuProduct;
 import com.example.cucutaae.mobileordering10.utils.Constants;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,8 +36,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import com.example.cucutaae.mobileordering10.adapter.ExpandableListAdapter;
 
 public class AddProductActivity extends AppCompatActivity {
 
@@ -249,7 +245,7 @@ public class AddProductActivity extends AppCompatActivity {
     public void btnUpload_Click(View v) {
         if (imgUri != null) {
             final ProgressDialog dialog = new ProgressDialog(this);
-            dialog.setTitle("Uploading image");
+            dialog.setTitle("Saving Product");
             dialog.show();
 
             //Get the storage reference

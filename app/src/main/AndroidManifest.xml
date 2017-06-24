@@ -40,7 +40,6 @@
 
         <activity
             android:name=".MainWaiterActivity"
-            android:label="@string/title_activity_main_client"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".menu.ProductListActivity"
@@ -78,6 +77,9 @@
         <activity android:name=".aboutus.AboutUsActivity" />
         <activity android:name=".aboutus.AddAboutUsActivity" />
         <activity android:name=".wifi.WifiActivity" />
+        <activity android:name=".AddTableActivity" />
+        <activity android:name=".ViewTableOrderActivity" />
+        <activity android:name=".RequestPaymentActivity"></activity>
     </application>
 
 </manifest>

@@ -65,7 +65,7 @@
 
         <TextView
             android:id="@+id/textViewSignIn"
-            android:text="You don't have an account? Sign up here"
+            android:text="Do you have an account? Sign In here"
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentStart="true"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginTop="15dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tvOrderProductQuantity"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="15dp"
+        android:gravity="left"
+        android:text="0"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp" />
+
+
+    <LinearLayout
+        android:layout_width="210dp"
+        android:layout_height="103dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvOrderProductName"
+            android:layout_width="228dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_toStartOf="@+id/tvUserPicture"
+            android:text="Product Name"
+            android:textColor="@color/accent_color"
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/tvOrderProductPrice"
+            android:layout_width="191dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_toStartOf="@+id/tvOrderProductName"
+            android:text="Price"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="139dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <ImageButton
+            android:id="@+id/ibTakeAnEyeProduct"
+            android:layout_marginTop="6dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/eye"
+            android:layout_weight="0.06" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.cucutaae.mobileordering10.MainClientActivity;
 import com.example.cucutaae.mobileordering10.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,12 +35,13 @@ public class SignUpClientActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_sign_up_client);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signOut();
 
-        if(firebaseAuth.getCurrentUser()!=null){
-            //profile activity here
-            finish();
-            startActivity(new Intent(getApplicationContext(),MainClientActivity.class));
-        }
+//        if(firebaseAuth.getCurrentUser()!=null){
+//            //profile activity here
+//            finish();
+//            startActivity(new Intent(getApplicationContext(),MainClientActivity.class));
+//        }
 
         progressDialog = new ProgressDialog(this);
 
@@ -64,7 +64,7 @@ public class SignUpClientActivity extends AppCompatActivity implements View.OnCl
 
         if(view == tvSignIn){
             //will open login activity here
-            startActivity(new Intent(this,SignInClientActivity.class));
+            startActivity(new Intent(this,MainClientActivity.class));
         }
     }
 

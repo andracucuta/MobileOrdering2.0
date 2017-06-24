@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,5 +8,64 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.cucutaae.mobileordering10.MainWaiterActivity"
     tools:showIn="@layout/app_bar_main_client">
+
+
+     <LinearLayout
+         android:id="@+id/layoutTitle"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_margin="15dp"
+         tools:layout_constraintTop_creator="1"
+         tools:layout_constraintLeft_creator="1"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintTop_toTopOf="parent">
+
+          <ImageView
+              android:id="@+id/ivPayCash"
+              app:srcCompat="@drawable/order"
+              android:layout_width="69dp"
+              android:layout_height="58dp"
+              android:layout_marginBottom="15dp"
+              android:layout_margin="15dp" />
+
+          <TextView
+              android:id="@+id/tvOrderText"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentTop="true"
+              android:layout_alignStart="@+id/btnSubmitOrder"
+              android:layout_marginBottom="15dp"
+              android:layout_marginTop="20dp"
+              android:text="Order Table"
+              android:textColor="@color/accent_color"
+              android:textSize="25dp" />
+
+     </LinearLayout>
+
+    <TextView
+        android:layout_below="@id/layoutTitle"
+        android:id="@+id/tvOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Table"
+        android:textColor="@color/accent_color"
+        android:textSize="25dp"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/lvTableList"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintLeft_toLeftOf="@+id/lvTableList" />
+
+    <ListView
+        android:id="@+id/lvTableList"
+        android:layout_width="324dp"
+        android:layout_height="308dp"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="46dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp" />
 
 </android.support.constraint.ConstraintLayout>

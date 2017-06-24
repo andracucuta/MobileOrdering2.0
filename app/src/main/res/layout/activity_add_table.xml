@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.cucutaae.mobileordering10.AddTableActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+    <LinearLayout
+        android:id="@+id/layoutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <ImageView
+            android:id="@+id/ivPayCash"
+            app:srcCompat="@drawable/table"
+            android:layout_width="69dp"
+            android:layout_height="58dp"
+            android:layout_marginBottom="15dp"
+            android:layout_margin="15dp" />
+
+        <TextView
+            android:id="@+id/tvOrderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/btnSubmitOrder"
+            android:layout_margin="15dp"
+            android:text="Add Table"
+            android:textColor="@color/accent_color"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@color/color_primary"
+            android:onClick="btnBrowse_Click"
+            android:text="Browse Table QRCode to Upload" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_margin="15dp"
+            app:srcCompat="@drawable/defaultimage"
+            android:layout_height="206dp"
+            android:layout_gravity="center"
+            android:id="@+id/imageView" />
+
+        <EditText
+            android:layout_margin="15dp"
+            android:id="@+id/txtImageName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Table name" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_margin="15dp"
+            android:layout_height="wrap_content"
+            android:background="@color/color_primary"
+            android:onClick="btnUpload_Click"
+            android:text="Save table" />
+    </LinearLayout>
+</ScrollView>

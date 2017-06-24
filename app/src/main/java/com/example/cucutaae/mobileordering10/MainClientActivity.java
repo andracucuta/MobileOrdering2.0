@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
-
 import com.example.cucutaae.mobileordering10.aboutus.AboutUsActivity;
 import com.example.cucutaae.mobileordering10.location.LocationActivity;
 import com.example.cucutaae.mobileordering10.menu.CategoryListClientActivity;
@@ -21,26 +20,24 @@ import com.example.cucutaae.mobileordering10.order.OrderActivity;
 import com.example.cucutaae.mobileordering10.signin.SignInClientActivity;
 import com.example.cucutaae.mobileordering10.tableReservation.TableReservationActivity;
 import com.example.cucutaae.mobileordering10.wifi.WifiActivity;
+import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
-import com.example.cucutaae.mobileordering10.adapter.ImageAdapter;
-
+import com.example.cucutaae.mobileordering10.menu.ImageAdapter;
 import service.FirebaseStorageService;
 
 public class MainClientActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ViewFlipper vfPicutres;
-
     private ImageView ivUserPicture;
     private ImageView ivImg1;
     private ImageView ivImg2;
     private ImageView ivImg3;
     private ImageView ivImg4;
-
     private GridView gridview;
-
     private TextView textViewUserEmail;
     private ImageView buttonLogout;
 
@@ -55,8 +52,9 @@ public class MainClientActivity extends AppCompatActivity implements View.OnClic
         Firebase.setAndroidContext(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if (firebaseAuth.getCurrentUser() == null) {
+        if (user== null) {
             finish();
             startActivity(new Intent(this, SignInClientActivity.class));
         } else {
@@ -92,15 +90,20 @@ public class MainClientActivity extends AppCompatActivity implements View.OnClic
                             Intent intentCallUs = new Intent(Intent.ACTION_DIAL);
                             intentCallUs.setData(Uri.parse("tel:" + number));
                             if (ActivityCompat.checkSelfPermission(MainClientActivity.this,
-                                    android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                    android.Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                                 // TODO: Consider calling
                                 MainClientActivity.this.startActivity(intentCallUs);
                                 break;
                             }
+                            break;
 
                         case 4:
                             Intent intentLocation = new Intent(MainClientActivity.this, LocationActivity.class);
                             MainClientActivity.this.startActivity(intentLocation);
+                            break;
+                        case 5:
+                            Intent intentRequestPaymentActivity = new Intent(MainClientActivity.this, RequestPaymentActivity.class);
+                            MainClientActivity.this.startActivity(intentRequestPaymentActivity);
                             break;
                         case 6:
                             Intent intentWifi = new Intent(MainClientActivity.this, WifiActivity.class);
@@ -113,7 +116,6 @@ public class MainClientActivity extends AppCompatActivity implements View.OnClic
                         default:
                             Toast.makeText(MainClientActivity.this, "" + position,
                                     Toast.LENGTH_SHORT).show();
-
                     }
                 }
             });
@@ -136,7 +138,6 @@ public class MainClientActivity extends AppCompatActivity implements View.OnClic
 
             }
             buttonLogout = (ImageView) findViewById(R.id.buttonLogout);
-
             buttonLogout.setOnClickListener(this);
         }
     }
@@ -171,9 +172,16 @@ public class MainClientActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view){
         if(view == buttonLogout){
-            firebaseAuth.signOut();
+            //firebaseAuth.signOut();
+
+            FirebaseAuth.getInstance().signOut();
+            LoginManager.getInstance().logOut();
+
             finish();
-            startActivity(new Intent(this, SignInClientActivity.class));
+
+            Intent intentSignOut = new Intent(MainClientActivity.this, SignInClientActivity.class);
+            intentSignOut.putExtra("USER_SIGN_OUT", "signOutUser");
+            MainClientActivity.this.startActivity(intentSignOut);
         }
     }
 }

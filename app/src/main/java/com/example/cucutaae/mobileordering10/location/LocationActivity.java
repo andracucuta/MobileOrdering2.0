@@ -4,8 +4,6 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -17,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cucutaae.mobileordering10.R;
-import com.example.cucutaae.mobileordering10.objects.Location;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -57,6 +54,7 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference refLocation = database.getReference("Location");
 
+    private Button btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +75,14 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
                 sendRequest();
             }
         });
+
+/*        btnBack = (Button) findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LocationActivity.this,MainClientActivity.class));
+            }
+        });*/
     }
 
     private void sendRequest(){

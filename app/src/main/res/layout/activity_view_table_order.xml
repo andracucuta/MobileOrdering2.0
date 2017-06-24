@@ -1,0 +1,137 @@
+<ScrollView
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+tools:context="com.example.cucutaae.mobileordering10.ViewTableOrderActivity">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/layoutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivWifi"
+            app:srcCompat="@drawable/order"
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:layout_marginBottom="15dp"
+            android:layout_margin="15dp" />
+
+        <TextView
+            android:id="@+id/tvOrderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order on table: "
+            android:textColor="@color/accent_color"
+            android:textSize="25dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/btnSubmitOrder"/>
+
+        <TextView
+            android:id="@+id/tvOrderTableName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tableName"
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/btnSubmitOrder" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/tvRegisterPayment"
+        android:visibility="visible"
+        android:gravity="center"
+        android:textAlignment="gravity"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@color/accent_color"
+        android:text="Register payment"
+        android:textColor="@color/cardview_light_background"
+        android:layout_below="@+id/layoutTitle"
+        android:layout_alignEnd="@+id/lvProductListScroll" />
+
+
+
+    <TextView
+        android:id="@+id/tvOrderNoOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="30dp"
+        android:text="There is nothing ordered yet."
+        android:layout_below="@+id/tvRegisterPayment"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="15dp"
+        android:textSize="20dp" />
+
+    <ScrollView
+        android:id="@+id/lvProductListScroll"
+        android:layout_below="@id/tvRegisterPayment"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_margin="15dp"
+        android:fillViewport="true">
+
+        <ListView
+            android:id="@+id/lvProductList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true" />
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layoutAllTotal"
+        android:orientation="vertical"
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lvProductListScroll"
+        android:layout_alignEnd="@+id/tvRegisterPayment">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutTotalAll"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:layout_marginTop="25dp"
+            android:layout_alignEnd="@+id/btnSubmitOrder">
+
+            <TextView
+                android:id="@+id/tvOrderTotalAllText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="Table Total: "
+                android:textColor="@color/accent_color"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tvOrderTotalAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 $ "
+                android:textColor="@color/colorAccent"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+</ScrollView>
+

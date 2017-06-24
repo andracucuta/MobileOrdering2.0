@@ -12,9 +12,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.example.cucutaae.mobileordering10.R;
-import com.example.cucutaae.mobileordering10.adapter.MenuProductAdapter;
-import com.example.cucutaae.mobileordering10.objects.MenuCategory;
-import com.example.cucutaae.mobileordering10.objects.MenuProduct;
 import com.example.cucutaae.mobileordering10.utils.Constants;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -84,7 +81,10 @@ public class ProductListActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     MenuProduct img = snapshot.getValue(MenuProduct.class);
-                    productList.add(img);
+                    if(img.getCategory().equalsIgnoreCase(tvCategoryName)) {
+                        img.setProductId(snapshot.getKey());
+                        productList.add(img);
+                    }
                 }
 
                 //Init adapter
@@ -131,6 +131,7 @@ public class ProductListActivity extends AppCompatActivity {
         tvCategoryName = (TextView) findViewById(R.id.tvCategoryName);
 
         lviProductsImageList = (ListView) findViewById(R.id.lviProductsImageList);
+
     }
 
     private void setCategoryImage( String tvCategoryName) {

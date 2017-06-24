@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.cucutaae.mobileordering10.MainClientActivity;
 import com.example.cucutaae.mobileordering10.R;
 import com.example.cucutaae.mobileordering10.dao.UserDao;
@@ -31,6 +30,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import java.util.Arrays;
 
 public class SignInClientActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -40,14 +40,10 @@ public class SignInClientActivity extends AppCompatActivity implements View.OnCl
     private TextView tvSignup;
 
     private ProgressDialog progressDialog;
-
-    private FirebaseAuth firebaseAuth;
-
     private CallbackManager mCallbackManager;
 
-    private FirebaseAuth mAuth;
+    private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
-
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     private static final String TAG = "SignInClientActivity";
@@ -59,19 +55,21 @@ public class SignInClientActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
 
         //Newer version of Firebase
-        if (!FirebaseApp.getApps(this).isEmpty()) {
-            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        String userType =  getIntent().getStringExtra("USER_SIGN_OUT");
+
+        if(!"signOutUser".equalsIgnoreCase(userType)) {
+            if (!FirebaseApp.getApps(this).isEmpty()) {
+                FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+            }
         }
 
         setContentView(R.layout.activity_sign_in_client);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        mAuth = FirebaseAuth.getInstance();
-
         if (firebaseAuth.getCurrentUser() != null) {
             //profile activity here
-            firebaseAuth.signOut();
+           // firebaseAuth.signOut();
             finish();
             startActivity(new Intent(getApplicationContext(), MainClientActivity.class));
         } else {
@@ -91,11 +89,10 @@ public class SignInClientActivity extends AppCompatActivity implements View.OnCl
             tvSignup = (TextView) findViewById(R.id.textViewSignUp);
 
 
-            //start facebook
-
             mCallbackManager = CallbackManager.Factory.create();
             LoginButton loginButton = (LoginButton) findViewById(R.id.login_facebookButton);
-            loginButton.setReadPermissions("email", "public_profile");
+            loginButton.setReadPermissions(Arrays.asList(
+                    "public_profile", "email", "user_birthday"));
             loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
                 @Override
                 public void onSuccess(LoginResult loginResult) {
@@ -117,20 +114,18 @@ public class SignInClientActivity extends AppCompatActivity implements View.OnCl
                 }
             });
 
-
             mAuthListener = new FirebaseAuth.AuthStateListener() {
                 @Override
                 public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                     user = firebaseAuth.getCurrentUser();
                     if (user != null) {
-                        // User is signed in
                         Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getDisplayName());
 
                     } else {
                         // User is signed out
+                        //firebaseAuth.signOut();
                         Log.d(TAG, "onAuthStateChanged:signed_out");
                     }
-                    // ...
                 }
             };
 
@@ -144,14 +139,14 @@ public class SignInClientActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
+        firebaseAuth.addAuthStateListener(mAuthListener);
     }
 
     @Override
     public void onStop() {
         super.onStop();
         if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
+            firebaseAuth.removeAuthStateListener(mAuthListener);
         }
     }
 
@@ -159,15 +154,12 @@ public class SignInClientActivity extends AppCompatActivity implements View.OnCl
         Log.d(TAG, "handleFacebookAccessToken:" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
+        firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
 
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithCredential", task.getException());
                             Toast.makeText(SignInClientActivity.this, "Authentication failed.",
@@ -189,11 +181,7 @@ public class SignInClientActivity extends AppCompatActivity implements View.OnCl
                             intent.putExtra("TYPE_OF_LOGIN", typeOfLogin);
 
                             startActivity(intent);
-
-                            /*startActivity(new Intent(getApplicationContext(),MainClientActivity.class));*/
                         }
-
-                        // ...
                     }
                 });
     }

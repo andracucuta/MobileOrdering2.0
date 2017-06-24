@@ -9,12 +9,6 @@
     tools:context="com.example.cucutaae.mobileordering10.menu.ProductItemViewActivity"
     tools:showIn="@layout/activity_product_item_view">
 
-<!--    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="dfsdd" />-->
-
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -115,8 +109,8 @@
             android:layout_marginLeft="15dp"
             android:layout_below="@id/tvDescriptionText"
             android:id="@+id/tvReviews"
-            android:textSize="20dp"
             android:text="See Reviews:"
+            android:textSize="20dp"
             android:textColor="@color/accent_color"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
@@ -125,14 +119,25 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical"
             android:layout_below="@id/tvReviews"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/tvReviewListEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:drawSelectorOnTop="false"
+                android:text="There is no review for this product. \nWe will really appreciate your opinion."
+                android:textColor="@color/accent_color"
+                android:textSize="20dp" />
 
             <ListView
                 android:id="@+id/lvReviewList"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:drawSelectorOnTop="false" />
+                android:layout_width="wrap_content"
+                android:layout_height="249dp"
+                android:drawSelectorOnTop="false"
+                android:layout_marginBottom="15dp"/>
 
             <EditText
                 android:layout_marginRight="15dp"
@@ -183,6 +188,14 @@
                 android:background="@color/accent_color"
                 android:text="Add Review"
                 android:textColor="@color/com_facebook_button_background_color_focused" />
+
+            <TextView
+                android:id="@+id/tvOrderTableName"
+                android:visibility="gone"
+                android:text="noTable"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
     </RelativeLayout>

@@ -1,53 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentStart="true"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginTop="15dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tvOrderProductQuantity"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="15dp"
+        android:gravity="left"
+        android:text="0"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp" />
+
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp">
-
-        <TextView
-            android:id="@+id/tvOrderProductQuantity"
-            android:layout_width="77dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:text="0"
-            android:textSize="25dp"
-            android:textColor="@color/colorAccent"
-            android:layout_alignParentBottom="true"
-            app:srcCompat="@drawable/defaultimage" />
+        android:layout_width="210dp"
+        android:layout_height="103dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvOrderProductName"
-            android:layout_width="wrap_content"
+            android:layout_width="196dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:layout_toStartOf="@+id/tvUserPicture"
             android:text="Product Name"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:textSize="25dp"
             android:textColor="@color/accent_color"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+            android:textSize="17dp" />
 
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageButton
-                android:id="@+id/ibRemoveProduct"
-                android:layout_width="60dp"
-                android:layout_height="64dp"
-                android:layout_marginLeft="40dp"
-                android:src="@android:drawable/ic_delete"/>
-        </RelativeLayout>
-
+        <TextView
+            android:id="@+id/tvOrderProductPrice"
+            android:layout_width="191dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_toStartOf="@+id/tvOrderProductName"
+            android:text="Price"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp" />
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="139dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ibTakeAnEyeProduct"
+            android:layout_marginTop="6dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/eye" />
+
+        <ImageButton
+            android:id="@+id/ibRemoveProduct"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:background="@null"
+            android:src="@android:drawable/ic_delete" />
+    </LinearLayout>
+
+</LinearLayout>

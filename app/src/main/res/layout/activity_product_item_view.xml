@@ -48,14 +48,17 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <ImageView
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/ivAddProduct"
         android:layout_width="71dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/fab_margin"
+        android:background="@android:color/transparent"
+        android:contentDescription="@null"
+        android:scaleType="fitXY"
         app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/order" />
+        app:layout_anchorGravity="bottom|right"
+        app:srcCompat="@mipmap/addbutton" />
 
     <include
         android:id="@+id/include"

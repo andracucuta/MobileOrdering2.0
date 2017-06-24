@@ -1,15 +1,13 @@
 package com.example.cucutaae.mobileordering10.signin;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.cucutaae.mobileordering10.R;
-import com.example.cucutaae.mobileordering10.signin.SignInClientActivity;
-import com.example.cucutaae.mobileordering10.signin.SignInWaiterActivity;
 
 public class ChooseProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,7 +18,16 @@ public class ChooseProfileActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_choose_profile);
+        Configuration config = getResources().getConfiguration();
+
+        if (config.smallestScreenWidthDp >= 600)
+        {
+            setContentView(R.layout.activity_choose_profile_tablet);
+        }
+        else
+        {
+            setContentView(R.layout.activity_choose_profile_phone);
+        }
 
         ivWaiter = (ImageView) findViewById(R.id.ivWaiter);
         ivServiceBell = (ImageView) findViewById(R.id.ivServiceBell);

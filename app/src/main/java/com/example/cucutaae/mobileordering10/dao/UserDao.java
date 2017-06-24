@@ -1,12 +1,8 @@
 package com.example.cucutaae.mobileordering10.dao;
 
-import com.example.cucutaae.mobileordering10.objects.User;
-import com.example.cucutaae.mobileordering10.utils.Constants;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.example.cucutaae.mobileordering10.signin.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
